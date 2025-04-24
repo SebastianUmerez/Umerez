@@ -1,42 +1,5 @@
 int main()
 {
-    //calculadora cientifica
-    float num1;
-    float num2;
-    float suma;
-    float resta;
-    float producto;
-    float division;
-    int opcion;
-    printf("ingresa num1: "); 
-    scanf("%f", &num1);
-    printf("ingrese num2: ");
-    scanf("%f", &num2);
-    
-    printf("\n 1.suma \n 2.resta \n 3.producto \n 4.division");
-    printf("\nseleccionar una opcion: ");
-    scanf("%d", &opcion);
-    
-    switch(opcion) {
-    case 1:    
-    suma = num1 + num2;
-    printf("\n suma: %.2f", suma);
-    break;
-    
-    case 2:
-    resta = num1 - num2;
-    printf("\n resta: %.2f", resta);
-    break;
-    
-    case 3:
-    producto = num1 * num2;
-    printf("\n producto: %.2f", producto);
-    break;
-    
-    case 4:
-    division = num1 / num2;
-    printf("\n division: %.2f", division);
-    break;
-    }
-    return 0;
+    //calculadora cuantica
+    //espereme
 }
