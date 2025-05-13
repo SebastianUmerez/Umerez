@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main()
+{
+    int num1;
+    int num2;
+    int num3;
+    printf("ingrese a num1: ");
+    scanf("%d", & num1);
+    printf("ingrese a num2: ");
+    scanf("%d", & num2);
+    printf("ingrese a num3: ");
+    scanf("%d", & num3);
+    if (num1 >= num2 && num1 >= num3) {
+      printf("el mayor es el primero");
+    }
+    else if (num2 >= num3 && num2 >= num1) {
+      printf("el mayor es el segundo");
+    }
+    else if (num3 >= num2 && num3 >= num1) {
+      printf("el mayor es el tercero");
+    }
+    return 0;
+}
