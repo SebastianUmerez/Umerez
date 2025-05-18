@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main(void) {
+    int TempEncendido;
+    int TempAmbiente;
+    printf("ingrese la temperatura de encendido: ");
+    scanf("%d", &TempEncendido);
+    printf("ingrese la temperatura ambiente: ");
+    scanf("%d", &TempAmbiente);
+    if(TempEncendido < TempAmbiente) {
+        printf("Ventilador encendido");
+    }
+    else {
+        printf("Ventilador apagado");
+    }
+}
