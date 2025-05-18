@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main(void){
+    float Minutos;
+    printf("ingrese los minutos de la llamada: ");
+    scanf("%f", &Minutos);
+    if(Minutos <= 3) {
+        float CostoPrimero = Minutos * 0.5;
+        printf("El costo de la llamada es: %.2f", CostoPrimero);
+    }
+    if(Minutos > 3) {
+        float MinutosRestantes = Minutos - 3;
+        float CostoSegundo = (MinutosRestantes*0.2) + 1.5;
+        printf("El costo de la llamada es: %.2f", CostoSegundo);
+    }
+}
