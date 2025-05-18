@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main()
+{
+    int curso;
+    char hostia;
+    int horario;
+    printf("ingrese año de cursado: ");
+    scanf(" %d", &curso);
+    printf("ingrese especialidad: ");
+    scanf(" %c", &hostia);
+    printf("ingrese horario de cursado: ");
+    scanf(" %d", &horario);
+    printf("\n Bienvenido al %d%c%d", curso, hostia, horario);
+    return 0;
+}
