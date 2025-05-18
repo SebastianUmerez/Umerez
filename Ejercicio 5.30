@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+ int main(void) {
+     int num1;
+     int num2;
+     int opcion;
+     printf("1. SUMA\n");
+     printf("2. RESTA\n");
+     printf("3. PRODUCTO\n");
+     printf("4. DIVISION\n");
+     scanf("%d", &opcion);
+     printf("Ingrese el primer numero: ");
+     scanf("%d", &num1);
+     printf("Ingrese el segundo numero: ");
+     scanf("%d", &num2);
+     switch (opcion) {
+     case 1:
+     int suma = num1 + num2;
+     printf("La suma entre %d y %d es de %d", num1, num2, suma);
+     break;
+     case 2:
+     int resta = num1 - num2;
+     printf("La resta entre %d y %d es de %d", num1, num2, resta);
+     break;
+     case 3:
+     int producto = num1 * num2;
+     printf("El producto entre %d y %d es de %d", num1, num2, producto);
+     break;
+     case 4:
+     float division = (float) num1 / num2;
+     printf("El division entre %d y %d es de %.2f", num1, num2, division);
+     break;
+     }
+     return 0;
+ }
