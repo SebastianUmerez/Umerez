@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main()
+{
+    int Tolerancia;
+    int ValorNorminal;
+    int ValorMedido;
+    float Resultado;
+    printf("ingrese a Tolerancia: ");
+    scanf("%d", &Tolerancia);
+    printf("ingrese a Valor Norminal: ");
+    scanf("%d", &ValorNorminal);
+    printf("ingrese a Valor medido de la resistencia: ");
+    scanf("%d", &ValorMedido); 
+    Resultado = (float) (ValorNorminal*Tolerancia) / 100;
+    if (ValorMedido >= ValorNorminal-Resultado && ValorMedido <= ValorNorminal+Resultado) {
+      printf("El valor se encuentra dentro de la tolerancia");
+    }
+    else {
+      printf("El valor se encuentra fuera de la tolerancia");
+    }
+    return 0;
+}
