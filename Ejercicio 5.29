@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+ int main(void) {
+     int nota1;
+     int nota2;
+     int caso;
+     float promedio;
+     int NotaExtra;
+     printf("ingrese la primera nota: ");
+     scanf("%d", &nota1);
+     printf("ingrese la segunda nota: ");
+     scanf("%d", &nota2);
+     if(nota1 < 6) caso = 1;
+     if(nota2 < 6) caso = 2;
+     if(nota1 >= 6 && nota2 >= 6) caso = 3;
+     switch (caso) {
+     case 1:
+     printf("ingrese la nota de recuperatorio: ");
+     scanf("%d", &NotaExtra);
+     promedio = (float) (NotaExtra+nota2) / 2;
+     if(promedio >= 8) printf("Promocionado");
+     else if(promedio < 6) printf("Desaprobado");
+     else if(promedio >= 6 && promedio < 8) printf("Aprobado");
+     break;
+     case 2:
+     printf("ingrese la nota de recuperatorio: ");
+     scanf("%d", &NotaExtra);
+     promedio = (float) (NotaExtra+nota1) / 2;
+     if(promedio >= 8) printf("Promocionado");
+     else if(promedio < 6) printf("Desaprobado");
+     else if(promedio >= 6 && promedio < 8) printf("Aprobado");
+     break;
+     case 3:
+     promedio = (float) (nota1+nota2) / 2;
+     if(promedio >= 8) printf("Promocionado");
+     else if(promedio < 6) printf("Desaprobado");
+     else if(promedio >= 6 && promedio < 8) printf("Aprobado");
+     break;
+     }
+     return 0;
+ }
