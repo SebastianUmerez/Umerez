@@ -1,0 +1,16 @@
+#include <stdio.h>
+ int main(void) {
+     int Peso;
+     float Altura;
+     printf("ingrese el peso en kg: ");
+     scanf("%d", &Peso);
+     printf("ingrese la altura en metros: ");
+     scanf("%f", &Altura);
+     float Masa = (float) Peso / (Altura*Altura);
+     printf("Su indice de masa corporal es: %.2f\n", Masa);
+     if(Masa < 18.5) printf("Condicion: Bajo Peso");
+     else if(Masa >= 18.5 && Masa <= 24.9) printf("Condicion: Normal");
+     else if(Masa >= 25 && Masa <= 29.9) printf("Condicion: Sobrepeso");
+     else if(Masa >= 30) printf("Condicion: Obesidad");
+     return 0;
+ }
