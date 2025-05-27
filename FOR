@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main()
+{
+    int i;
+    int n = 5;
+    float prom = 0;
+    int nota;
+    for(i = 0; i < n; i++) {
+        printf("ingrese la nota: ");
+        scanf("%d", &nota);
+        prom += nota;
+        //prom = prom + nota;
+        //printf("vaya %d\n", i );
+        //printf("no se que hacer %.2f \n", prom);
+    }
+    //prom = prom 
+    prom /= n;
+    printf("el promedio es %.2f", prom);
+}
