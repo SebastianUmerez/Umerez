@@ -1,0 +1,12 @@
+#include <stdio.h>
+int main(void) {
+    int nota;
+    printf("ingrese nota:");
+    scanf("%d", &nota);
+    while(nota < 0 || nota > 10) {
+       printf("ingrese nota:");
+       scanf("%d", &nota);
+       //printf("nota invalida\n");
+    }
+    printf("nota valida\n");
+}
