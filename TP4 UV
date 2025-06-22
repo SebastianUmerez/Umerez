@@ -2,11 +2,13 @@
 
 int main() {
     int calificacion;
+    do {
+        printf("Ingrese la calificación: ");
+        scanf("%d", &calificacion);
+        }
+    } while (calificacion < 0);
 
-    printf("Ingrese la calificación: ");
-    scanf("%d", &calificacion);
-
-      if (calificacion >= 90) {
+    if (calificacion >= 90) {
         printf("Calificación: A\n");
     } else if (calificacion >= 80) {
         printf("Calificación: B\n");
@@ -17,5 +19,6 @@ int main() {
     } else {
         printf("Calificación: F\n");
     }
+
     return 0;
 }
