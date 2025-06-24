@@ -1,0 +1,72 @@
+#include <stdio.h>
+
+float num1,num2,suma,resta,producto,division;
+void sumar(void);
+void restar(void);
+void multiplicar(void);
+void dividir(void);
+void ingresar_dos_num(void);
+  
+  int main(){
+    //calculadora cientifica
+    int opcion;
+    do {
+    printf("\n \n calculadora cientifica");
+    printf("\n 1.suma \n 2.resta \n 3.producto \n 4.division \n 5.Salir");
+    printf("\n seleccionar una opcion: ");
+    scanf("%d", &opcion);
+    
+    switch(opcion) {
+    case 1:    
+    sumar();
+    break;
+    
+    case 2:
+    restar();
+    break;
+    
+    case 3:
+    multiplicar();
+    break;
+    
+    case 4:
+    dividir();
+    break;
+    
+    case 5:
+    printf(" Saliendo");
+    break;  
+    
+    default:
+    printf(" ERROR");
+    break;
+    }
+     } while(opcion != 5);
+    return 0;
+}
+void sumar(void) {
+    ingresar_dos_num();
+    suma = num1 + num2;
+    printf("\n suma: %.2f", suma);
+}
+void restar(void){
+    ingresar_dos_num();
+    resta = num1 - num2;
+    printf("\n resta: %.2f", resta);
+}
+void multiplicar(void) {
+    ingresar_dos_num();
+    producto = num1 * num2;
+    printf("\n producto: %.2f", producto);
+}
+void dividir(void) {
+    ingresar_dos_num();
+    division = num1 / num2;
+    printf("\n division: %.2f", division);
+}
+void ingresar_dos_num(void) {
+    printf("ingresa num1: "); 
+    scanf("%f", &num1);
+    printf("ingrese num2: ");
+    scanf("%f", &num2);
+}
