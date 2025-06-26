@@ -1,3 +1,9 @@
+/* Realice un programa que determine el estado academico de un alumno en
+ base a su promedio. El programa debe imprimir “Promocionado” si es mayor
+ o igual a 8. “Regular” si es mayor o igual a 6 y menor que 8. Finalmente
+ “Desaprobado” si es menor a 6. Tener en cuenta que los valores posibles son
+ unicamente entre 1 y 10. */
+
 #include <stdio.h>
 
  int main(void) {
