@@ -1,7 +1,9 @@
+/*Escribir un programa que determine el mayor de 3 n´ umeros ingresados. Si
+ los n´ umeros son iguales, se debe imprimir un mensaje que lo indique.*/
+
 #include <stdio.h>
 
-int main()
-{ ///HOLA
+int main(){ 
     int num1;
     int num2;
     int num3;
