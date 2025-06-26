@@ -1,3 +1,8 @@
+/* Realizar un programa en el cual se muestre al usuario un menu con cuatro
+ operaciones matematicas, a saber: suma, resta, division, multiplicacion. El
+ usuario debe ingresar el numero de la operacion y luego los dos operandos.
+ Finalmente se debe mostrar en pantalla el resultado de la operacion.*/
+
 #include <stdio.h>
 
  int main(void) {
