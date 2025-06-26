@@ -1,3 +1,8 @@
+/* Realizar un programa que controle el encendido de un ventilador en base
+ a la temperatura de encendido y la temperatura ambiente proporcionada por
+ el usuario. Se debe imprimir en pantalla el estado del ventilador luego de
+ ingresar los datos.*/
+
 #include <stdio.h>
 
 int main(void) {
