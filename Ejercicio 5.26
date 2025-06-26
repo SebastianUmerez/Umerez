@@ -1,3 +1,8 @@
+ /* Realizar un programa que solicite ingresar el valor nominal de resistencia
+ (en ohms) y la tolerancia (valor entero en porcentaje). Una vez cargados estos
+ valores, el programa debe solicitar al usuario que ingrese un valor de resisten
+cia real y determine si la misma esta dentro de los margenes de tolerancia.*/
+
 #include <stdio.h>
 
 int main()
