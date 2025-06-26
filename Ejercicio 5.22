@@ -1,3 +1,7 @@
+/* Realizar un programa que dada la duracion en minutos de una llamada,
+ permita calcular el costo,considerando:-Hasta tres minutos el costo es 0.50 por minuto-Por encima de tres minutos
+ es 1.5 fijo m´ as 0.2 por cada minuto adicional a los tres primeros */
+ 
 #include <stdio.h>
 
 int main(void){
