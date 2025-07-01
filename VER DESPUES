@@ -1,0 +1,48 @@
+#include <stdio.h>
+int ret_max(int a, int b) {
+    int max;
+    if(a>b) max = a;
+    else max = b;
+    return max;
+}
+int main() {
+    int num1;
+    int num2;
+    printf("Ingrese dos numeros diferentes: ");
+    scanf("%d %d", &num1,&num2);
+    int mayor = ret_max(num1,num2);
+   printf("El numero %d es el mayor \n",mayor);
+    return 0;
+}
+
+
+#include <stdio.h>
+int potencia(int a, int b) {
+    int res = 1;
+    for(int i= 0; i < b; i++) res *= a;
+    return res;
+} 
+
+int main(void) {
+    int base, expo;
+    printf("ingrese base y exponente: ");
+    scanf("%d %d", &base, &expo);
+    printf("El numero %d elevado a la %d es: %d\n",base,expo,potencia(base,expo));
+    return 0;
+}
+
+
+#include <stdio.h>
+void imprime_mayor(int x, int y) {
+    if(x>y) printf("El numero %d es el mayor \n",x);
+    if(x<y) printf("El numero %d es el mayor \n",y);
+    if(x==y) printf("El numero son iguales \n");
+}
+int main() {
+    int num1;
+    int num2;
+    printf("Ingrese dos numeros diferentes: ");
+    scanf("%d %d", &num1,&num2);
+    imprime_mayor(num1,num2);
+    return 0;
+}
