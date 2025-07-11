@@ -1,0 +1,14 @@
+#include <stdio.h>
+void imprime_mayor(int x, int y) {
+    if(x>y) printf("El numero %d es el mayor \n",x);
+    if(x<y) printf("El numero %d es el mayor \n",y);
+    if(x==y) printf("El numero son iguales \n");
+}
+int main() {
+    int num1;
+    int num2;
+    printf("Ingrese dos numeros diferentes: ");
+    scanf("%d %d", &num1,&num2);
+    imprime_mayor(num1,num2);
+    return 0;
+}
