@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main() {
+    int i;
+
+    // Primer fila: 0 a 4
+    for (i = 0; i < 5; i++) {
+        printf("%d ", i);
+    }
+    printf("\n"); // salto de línea
+
+    // Segunda fila: 5 a 9
+    for (i = 5; i < 10; i++) {
+        printf("%d ", i);
+    }
+    printf("\n");
+
+    return 0;
+}
