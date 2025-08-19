@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int main() {
+    int numJugadores, i, j;
+    int numero, maxDivisores = -1, ganador;
+    
+    printf("Ingrese la cantidad de jugadores: ");
+    scanf("%d", &numJugadores);
+
+    for (i = 1; i <= numJugadores; i++) {
+        printf("\nJugador %d, ingrese un numero entero positivo: ", i);
+        scanf("%d", &numero);
+
+        int contadorDivisores = 0;
+
+        printf("Divisores propios de %d: ", numero);
+        for (j = 2; j < numero; j++) { // Divisores distintos de 1 y del propio número
+            if (numero % j == 0) {
+                printf("%d ", j);
+                contadorDivisores++;
+            }
+        }
+        printf("\nCantidad de divisores propios: %d\n", contadorDivisores);
+
+        // Determinar jugador con más divisores
+        if (contadorDivisores > maxDivisores) {
+            maxDivisores = contadorDivisores;
+            ganador = i; // En caso de empate, gana el primero
+        }
+    }
+
+    printf("\nGana el Jugador %d con %d divisores propios.\n", ganador, maxDivisores);
+
+    return 0;
+}
