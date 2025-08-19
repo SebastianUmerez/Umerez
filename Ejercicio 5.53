@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+int main() {
+    int numJugadores;
+    int i, pasos, maxPasos = 0, ganador;
+    long x;
+
+    // Pedir cantidad de jugadores
+    printf("Ingrese la cantidad de jugadores: ");
+    scanf("%d", &numJugadores);
+
+    // Iterar sobre cada jugador
+    for (i = 1; i <= numJugadores; i++) {
+        printf("Jugador %d, ingrese su numero inicial: ", i);
+        scanf("%ld", &x);
+
+        long n = x; // Copia para no modificar el número original
+        pasos = 1;  // Contar el primer número
+        printf("Secuencia Jugador %d: %ld ", i, n);
+
+        // Generar secuencia de Collatz
+        while (n != 1) {
+            if (n % 2 == 0) {
+                n = n / 2;
+            } else {
+                n = 3 * n + 1;
+            }
+            pasos++;
+            printf("%ld ", n);
+        }
+
+        printf("(%d pasos)\n", pasos);
+
+        // Determinar si es el jugador con más pasos
+        if (pasos > maxPasos) {
+            maxPasos = pasos;
+            ganador = i;
+        }
+    }
+
+    // Mostrar ganador
+    printf("\nGanador: Jugador %d con %d pasos\n", ganador, maxPasos);
+
+    return 0;
+}
