@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+    float precio, tasaInteres;
+    int cuotas;
+
+    // Pedir precio válido
+    do {
+        printf("Ingrese el precio del producto (>=0): ");
+        scanf("%f", &precio);
+        if (precio < 0)
+            printf("Error: el precio no puede ser negativo.\n");
+    } while (precio < 0);
+
+    // Pedir cantidad de cuotas válida
+    do {
+        printf("Ingrese la cantidad de cuotas (2-12): ");
+        scanf("%d", &cuotas);
+        if (cuotas < 2 || cuotas > 12)
+            printf("Error: las cuotas deben ser entre 2 y 12.\n");
+    } while (cuotas < 2 || cuotas > 12);
+
+    // Pedir tasa de interés válida
+    do {
+        printf("Ingrese la tasa de interes anual en %% (>=0): ");
+        scanf("%f", &tasaInteres);
+        if (tasaInteres < 0)
+            printf("Error: la tasa de interes no puede ser negativa.\n");
+    } while (tasaInteres < 0);
+
+    // Calcular el monto de la primera cuota
+    // Usando interés simple proporcional por cuota: (precio + precio*tasa/100) / cuotas
+    float montoPrimeraCuota = (precio + precio * (tasaInteres / 100)) / cuotas;
+
+    printf("El monto de la primera cuota es: %.2f\n", montoPrimeraCuota);
+
+    return 0;
+}
