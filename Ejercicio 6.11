@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+// Prototipo
+void clasificarCaracter(char c);
+
+int main() {
+    char c;
+
+    printf("Ingrese un caracter: ");
+    scanf(" %c", &c); // el espacio evita problemas con ENTERs previos
+
+    clasificarCaracter(c);
+
+    return 0;
+}
+
+void clasificarCaracter(char c) {
+    // Usamos condicionales para separar los casos principales
+    if (c >= 'A' && c <= 'Z') {
+        printf("Es una letra mayuscula.\n");
+    } 
+    else if (c >= 'a' && c <= 'z') {
+        printf("Es una letra minuscula.\n");
+    } 
+    else if (c >= '0' && c <= '9') {
+        // Aquí podemos usar switch para diferenciar dígitos
+        switch (c) {
+            case '0': case '1': case '2': case '3': case '4':
+            case '5': case '6': case '7': case '8': case '9':
+                printf("Es un digito numerico.\n");
+                break;
+        }
+    } 
+    else {
+        printf("Es otro simbolo.\n");
+    }
+}
