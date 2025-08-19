@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+// Prototipo
+int validarHora(int horas, int minutos, int segundos);
+
+int main() {
+    int h, m, s;
+
+    printf("Ingrese horas, minutos y segundos: ");
+    scanf("%d %d %d", &h, &m, &s);
+
+    if (validarHora(h, m, s)) {
+        printf("La hora %02d:%02d:%02d es valida.\n", h, m, s);
+    } else {
+        printf("Hora invalida.\n");
+    }
+
+    return 0;
+}
+
+// Implementación de la función
+int validarHora(int horas, int minutos, int segundos) {
+    if (horas < 0 || horas > 23) {
+        printf("Error: horas incorrectas (0-23).\n");
+        return 0;
+    }
+    if (minutos < 0 || minutos > 59) {
+        printf("Error: minutos incorrectos (0-59).\n");
+        return 0;
+    }
+    if (segundos < 0 || segundos > 59) {
+        printf("Error: segundos incorrectos (0-59).\n");
+        return 0;
+    }
+    return 1; // Todos los valores son válidos
+}
