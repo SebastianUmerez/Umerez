@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+// Prototipos
+int verificarPin(int pinIngresado);
+int calcularBilletes(int monto, int denominacion);
+
+int main() {
+    int pin;
+    int monto;
+    int denominacion = 100; // ejemplo: billetes de 100
+
+    printf("Ingrese su PIN: ");
+    scanf("%d", &pin);
+
+    if (!verificarPin(pin)) {
+        printf("PIN incorrecto. Acceso denegado.\n");
+        return 0; // salir del programa
+    }
+
+    printf("PIN correcto.\n");
+    printf("Ingrese el monto a retirar: ");
+    scanf("%d", &monto);
+
+    if (monto <= 0) {
+        printf("Monto invalido.\n");
+        return 0;
+    }
+
+    int billetes = calcularBilletes(monto, denominacion);
+    int saldoRestante = monto % denominacion;
+
+    printf("Se entregaran %d billetes de $%d\n", billetes, denominacion);
+    printf("Saldo restante que no se puede entregar: $%d\n", saldoRestante);
+
+    return 0;
+}
+
+// Función para verificar el PIN
+int verificarPin(int pinIngresado) {
+    int pinCorrecto = 1234; // PIN fijo
+    if (pinIngresado == pinCorrecto)
+        return 1; // correcto
+    else
+        return 0; // incorrecto
+}
+
+// Función para calcular la cantidad de billetes
+int calcularBilletes(int monto, int denominacion) {
+    return monto / denominacion;
+}
