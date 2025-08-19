@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main() {
+    int i, j;
+    int numero = 1; // Contador que irá del 1 al 100
+
+    for (i = 0; i < 10; i++) {          // 10 filas
+        for (j = 0; j < 10; j++) {      // 10 columnas
+            printf("%3d ", numero);     // %3d para alinear los números
+            numero++;
+        }
+        printf("\n"); // Salto de línea al terminar cada fila
+    }
+
+    return 0;
+}
