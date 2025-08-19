@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() {
+    int filas, columnas;
+    int i, j;
+    int numero = 0; // Comienza en 0
+
+    // Pedir filas y columnas al usuario
+    printf("Cantidad de filas: ");
+    scanf("%d", &filas);
+
+    printf("Cantidad de columnas: ");
+    scanf("%d", &columnas);
+
+    // Imprimir la matriz
+    for (i = 0; i < filas; i++) {
+        for (j = 0; j < columnas; j++) {
+            printf("%3d ", numero);
+            numero++;
+        }
+        printf("\n"); // Salto de línea al terminar una fila
+    }
+
+    return 0;
+}
