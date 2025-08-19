@@ -1,0 +1,59 @@
+#include <stdio.h>
+
+int main() {
+    char palabra[] = "PROGRAMAR";   // palabra a adivinar
+    int longitud = 9;                // longitud de la palabra
+    char adivinadas[9];              // letras correctas reveladas
+    char letra;
+    int errores = 0, max_errores = 6;
+    int i, aciertos = 0;
+
+    // Inicializar adivinadas con guiones bajos
+    for(i = 0; i < longitud; i++) {
+        adivinadas[i] = '_';
+    }
+
+    printf("Bienvenido al juego del Ahorcado!\n");
+
+    while(errores < max_errores && aciertos < longitud) {
+        printf("\nPalabra: ");
+        for(i = 0; i < longitud; i++) {
+            printf("%c", adivinadas[i]);
+        }
+        printf("\nIngrese una letra: ");
+        scanf(" %c", &letra);
+
+        // Convertir letra a mayúscula si es minúscula
+        if(letra >= 'a' && letra <= 'z') {
+            letra = letra - ('a' - 'A');
+        }
+
+        int acerto = 0;
+        for(i = 0; i < longitud; i++) {
+            if(palabra[i] == letra && adivinadas[i] == '_') {
+                adivinadas[i] = letra;
+                acerto = 1;
+                aciertos++;
+            }
+        }
+
+        if(!acerto) {
+            errores++;
+            printf("Letra incorrecta! Ahorcado: %d/%d\n", errores, max_errores);
+        } else {
+            printf("Letra correcta!\n");
+        }
+    }
+
+    if(aciertos == longitud) {
+        printf("\nFelicidades! Adivinaste la palabra: ");
+    } else {
+        printf("\nHas perdido! La palabra era: ");
+    }
+    for(i = 0; i < longitud; i++) {
+        printf("%c", palabra[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
