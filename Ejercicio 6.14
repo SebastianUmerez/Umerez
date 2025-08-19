@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+// Prototipo
+void convertirDias(int totalDias);
+
+int main() {
+    int dias;
+
+    printf("Ingrese la cantidad total de dias: ");
+    scanf("%d", &dias);
+
+    if (dias < 0) {
+        printf("Error: solo se permiten dias positivos.\n");
+    } else {
+        convertirDias(dias);
+    }
+
+    return 0;
+}
+
+// Implementación de la función
+void convertirDias(int totalDias) {
+    int semanas = totalDias / 7;   // calcular semanas completas
+    int diasRestantes = totalDias % 7; // calcular dias restantes
+
+    printf("%d semanas y %d dias\n", semanas, diasRestantes);
+}
