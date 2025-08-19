@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+    int n, i;
+
+    // Pedir número al usuario
+    printf("Ingrese el numero 'n': ");
+    scanf("%d", &n);
+
+    // Imprimir números pares desde 0 hasta n
+    for (i = 0; i <= n; i += 2) {
+        printf("%d ", i);
+    }
+
+    printf("\n");
+    return 0;
+}
