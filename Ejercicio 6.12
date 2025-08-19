@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+// Prototipo
+int contarCifras(int n);
+
+int main() {
+    int numero;
+
+    printf("Ingrese un numero entero positivo: ");
+    scanf("%d", &numero);
+
+    if (numero < 0) {
+        printf("Error: solo se permiten numeros positivos.\n");
+    } else {
+        printf("El numero %d tiene %d cifras.\n", numero, contarCifras(numero));
+    }
+
+    return 0;
+}
+
+// Implementación de la función
+int contarCifras(int n) {
+    if (n == 0)
+        return 1; // Caso especial: 0 tiene 1 cifra
+
+    int contador = 0;
+    while (n > 0) {
+        n = n / 10; // Eliminar el último dígito
+        contador++;  // Contar dígito
+    }
+    return contador;
+}
