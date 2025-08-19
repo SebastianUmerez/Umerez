@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int main() {
+    int N, i;
+    int numero, suma, producto, digito;
+    int contadorEspia = 0;
+
+    // Pedir la cantidad de números a analizar
+    printf("Ingrese la cantidad de numeros a analizar: ");
+    scanf("%d", &N);
+
+    for (i = 1; i <= N; i++) {
+        printf("\nIngrese un numero: ");
+        scanf("%d", &numero);
+
+        suma = 0;
+        producto = 1;
+        int n = numero;
+
+        // Procesar cada dígito del número
+        while (n > 0) {
+            digito = n % 10;       // Obtener el último dígito
+            suma += digito;         // Sumarlo
+            producto *= digito;     // Multiplicarlo
+            n /= 10;                // Eliminar el último dígito
+        }
+
+        // Verificar si es número espía
+        if (suma == producto) {
+            printf("%d es un numero espia.\n", numero);
+            contadorEspia++;
+        } else {
+            printf("%d no es un numero espia.\n", numero);
+        }
+
+        printf("---------------------------------\n");
+    }
+
+    // Mostrar cantidad de números espía encontrados
+    printf("\nCantidad de numeros espia encontrados: %d\n", contadorEspia);
+
+    return 0;
+}
