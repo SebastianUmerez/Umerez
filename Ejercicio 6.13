@@ -1,0 +1,35 @@
+include <stdio.h>
+
+// Prototipo
+int contarPares(int n);
+
+int main() {
+    int numero;
+
+    printf("Ingrese un numero entero positivo: ");
+    scanf("%d", &numero);
+
+    if (numero < 0) {
+        printf("Error: solo se permiten numeros positivos.\n");
+    } else {
+        printf("El numero %d tiene %d digitos pares.\n", numero, contarPares(numero));
+    }
+
+    return 0;
+}
+
+// Implementación de la función
+int contarPares(int n) {
+    int contador = 0;
+    if (n == 0)
+        return 1; // 0 se considera par
+
+    while (n > 0) {
+        int digito = n % 10; // obtener el último dígito
+        if (digito % 2 == 0) {
+            contador++;
+        }
+        n = n / 10; // eliminar el último dígito
+    }
+    return contador;
+}
