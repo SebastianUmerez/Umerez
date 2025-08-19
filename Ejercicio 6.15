@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+// Prototipo
+int esBisiesto(int anio);
+
+int main() {
+    int anio;
+
+    printf("Ingrese un anio: ");
+    scanf("%d", &anio);
+
+    if (esBisiesto(anio))
+        printf("%d es bisiesto.\n", anio);
+    else
+        printf("%d no es bisiesto.\n", anio);
+
+    return 0;
+}
+
+// Implementación de la función
+int esBisiesto(int anio) {
+    if ((anio % 4 == 0) && ((anio % 100 != 0) || (anio % 400 == 0)))
+        return 1;
+    else
+        return 0;
+}
