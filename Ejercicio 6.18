@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+// Prototipo
+void convertirTiempo(int minutosTotales, int* horas, int* minutos);
+
+int main() {
+    int minutosTotales;
+    int h, m;
+
+    // Pedir valor válido
+    do {
+        printf("Ingrese la cantidad total de minutos (>=0): ");
+        scanf("%d", &minutosTotales);
+        if (minutosTotales < 0)
+            printf("Error: los minutos no pueden ser negativos.\n");
+    } while (minutosTotales < 0);
+
+    // Llamar a la función
+    convertirTiempo(minutosTotales, &h, &m);
+
+    printf("%d minutos equivalen a %d horas y %d minutos.\n", minutosTotales, h, m);
+
+    return 0;
+}
+
+// Implementación de la función
+void convertirTiempo(int minutosTotales, int* horas, int* minutos) {
+    *horas = minutosTotales / 60;    // calcular horas completas
+    *minutos = minutosTotales % 60;  // calcular minutos restantes
+}
