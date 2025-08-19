@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+// Prototipo
+int esMultiplo(int a, int b);
+
+int main() {
+    int a, b;
+
+    printf("Ingrese a y b: ");
+    scanf("%d %d", &a, &b);
+
+    int resultado = esMultiplo(a, b);
+
+    if (resultado != -1) { // -1 indica error
+        if (resultado==1)
+            printf("%d es multiplo de %d\n", a, b);
+        else
+            printf("%d no es multiplo de %d\n", a, b);
+    }
+
+    return 0;
+}
+
+// Implementación de la función
+int esMultiplo(int a, int b) {
+    if (b == 0) {
+        printf("Error: no se puede dividir entre 0.\n");
+        return -1; // Indicador de error
+    }
+    if (a % b == 0)
+        return 1;
+    else
+        return 0;
+}
