@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    int L, a;
+    int n, total;
+
+    // Pedir entrada
+    printf("Ingrese el lado del triangulo L: ");
+    scanf("%d", &L);
+    printf("Ingrese el lado del cuadrado a: ");
+    scanf("%d", &a);
+
+    if (a <= 0 || L <= 0 || a > L) {
+        printf("Error: valores invalidos.\n");
+        return 1;
+    }
+
+    // Cantidad de cuadrados en la base
+    n = L / a;
+
+    // Cantidad total de cuadrados en piramide
+    total = n * (n + 1) / 2;
+
+    printf("Cantidad de cuadrados que entran: %d\n", total);
+
+    return 0;
+}
