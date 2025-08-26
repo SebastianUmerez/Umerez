@@ -1,0 +1,55 @@
+#include <stdio.h>
+#define N 10
+
+int main(void) {
+    int numeros[N], sinRepetidos[N];
+    int i, j, k = 0;
+    int repetido;
+
+    // Ingresar los 10 números y validar que sean positivos
+    for(i = 0; i < N; i++) {
+        do {
+            printf("Ingrese el numero[%d] (positivo): ", i);
+            scanf("%d", &numeros[i]);
+            if (numeros[i] <= 0) {
+                printf("Error: el numero debe ser positivo.\n");
+            }
+        } while(numeros[i] <= 0);
+    }
+
+    // Construir arreglo sin repetidos
+    for(i = 0; i < N; i++) {
+        repetido = 0;
+        // Verificar si el numero ya estaba en sinRepetidos
+        for(j = 0; j < k; j++) {
+            if(numeros[i] == sinRepetidos[j]) {
+                repetido = 1;
+                break;
+            }
+        }
+        // Si no estaba repetido, lo agregamos
+        if(!repetido) {
+            sinRepetidos[k] = numeros[i];
+            k++;
+        }
+    }
+
+    // Completar los espacios restantes con 0
+    for(i = k; i < N; i++) {
+        sinRepetidos[i] = 0;
+    }
+
+    // Mostrar el arreglo original
+    printf("\nArreglo original:\n");
+    for(i = 0; i < N; i++) {
+        printf("numeros[%d]: %d\n", i, numeros[i]);
+    }
+
+    // Mostrar el arreglo sin repetidos
+    printf("\nArreglo sin repetidos (con mismo tamaño):\n");
+    for(i = 0; i < N; i++) {
+        printf("sinRepetidos[%d]: %d\n", i, sinRepetidos[i]);
+    }
+
+    return 0;
+}
