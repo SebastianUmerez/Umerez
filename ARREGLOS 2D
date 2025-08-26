@@ -1,0 +1,26 @@
+#include <stdio.h>
+#define N 2
+
+int main(void) {
+    int matriz[N][N];
+    int fila, columna;
+
+    // Llenar la matriz
+    for(fila = 0; fila < N; fila++) {
+        for(columna = 0; columna < N; columna++) {
+            printf("ingrese num[%d][%d]: ",fila,columna);
+            scanf("%d", &matriz[fila][columna]);
+        }
+    }
+
+    // Mostrar la matriz
+    printf("Matriz:\n");
+    for(fila = 0; fila < N; fila++) {
+        for(columna = 0; columna < N; columna++) {
+            printf("%d ", matriz[fila][columna]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
