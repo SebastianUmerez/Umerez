@@ -1,0 +1,17 @@
+#include <stdio.h>
+#define N 5 //constantes
+int main()
+{
+    int arreglo [N];
+    for(int i=0; i<N; i++) {
+        do{
+        printf("ingrese numeros[%d]: ", i);
+        scanf("%d", &arreglo[i]);
+        if(arreglo[i] < -30 || arreglo[i] > 30) printf("ERROR\n");
+        } while(arreglo[i] < -30 || arreglo[i] > 30);
+        
+    }
+    for(int i=0; i<N; i++) {
+        printf("numeros: %d ",arreglo[i]);
+    }
+}
