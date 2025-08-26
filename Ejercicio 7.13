@@ -1,0 +1,28 @@
+#include <stdio.h>
+#define N 3
+
+int main(void) {
+    int matriz[N][N];
+    int i, j;
+
+    // Llenar la matriz
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < N; j++) {
+            if(i == j)
+                matriz[i][j] = 1; // En la diagonal
+            else
+                matriz[i][j] = 0; // Fuera de la diagonal
+        }
+    }
+
+    // Mostrar la matriz
+    printf("Matriz 3x3 identidad:\n");
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < N; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
