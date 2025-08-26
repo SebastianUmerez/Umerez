@@ -1,0 +1,26 @@
+#include <stdio.h>
+#define N 5   // Tamaño del arreglo
+
+int main(void) {
+    int a[N], b[N];
+    int i;
+
+    // Ingreso de los elementos
+    for(i = 0; i < N; i++) {
+        printf("Ingrese el elemento a[%d]: ", i);
+        scanf("%d", &a[i]);
+    }
+
+    // Desplazar una posición a la derecha
+    b[0] = a[N-1];  // El último pasa al primero
+    for(i = 1; i < N; i++) {
+        b[i] = a[i-1]; 
+    }
+
+    // Mostrar el arreglo desplazado
+    printf("\nEl arreglo desplazado es:\n");
+    for(i = 0; i < N; i++) {
+        printf("b[%d]: %d\n", i, b[i]);
+    }
+    return 0;
+}
