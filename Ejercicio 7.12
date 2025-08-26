@@ -1,0 +1,40 @@
+ #include <stdio.h>
+#define N 6
+
+int main(void) {
+    int a[N], temp[N];
+    int i, k;
+
+    // Ingresar el arreglo
+    for(i = 0; i < N; i++) {
+        printf("Ingrese el elemento a[%d]: ", i);
+        scanf("%d", &a[i]);
+    }
+
+    // Ingresar k con validación
+    do {
+        printf("Ingrese el valor de k (1 a %d): ", N-1);
+        scanf("%d", &k);
+        if(k <= 0 || k >= N) {
+            printf("Error: k debe ser mayor que 0 y menor que %d.\n", N);
+        }
+    } while(k <= 0 || k >= N);
+
+    // Rotar a la izquierda k posiciones
+    for(i = 0; i < N; i++) {
+        temp[i] = a[(i + k) % N];
+    }
+
+    // Copiar resultado al arreglo original
+    for(i = 0; i < N; i++) {
+        a[i] = temp[i];
+    }
+
+    // Mostrar arreglo rotado
+    printf("\nArreglo rotado %d posiciones a la izquierda:\n", k);
+    for(i = 0; i < N; i++) {
+        printf("a[%d]: %d\n", i, a[i]);
+    }
+
+    return 0;
+}
