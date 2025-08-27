@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+    int nota1, nota2, recu = -1;   // Variables para guardar las notas (recu inicializado en -1)
+    float promedio;
+
+    // Pedir las dos notas de parciales
+    printf("Ingrese la primera nota: ");
+    scanf("%d", &nota1);
+
+    printf("Ingrese la segunda nota: ");
+    scanf("%d", &nota2);
+
+    // Si desaprueba algún parcial (<6), se pide la nota del recuperatorio
+    if (nota1 < 6 || nota2 < 6) {
+        printf("Ingrese la nota del recuperatorio: ");
+        scanf("%d", &recu);
+
+        // Reemplazar la nota desaprobada por la del recuperatorio
+        if (nota1 < 6)
+            nota1 = recu;
+        else
+            nota2 = recu;
+    }
+
+    // Calcular el promedio
+    promedio = (nota1 + nota2) / 2.0;
+
+    // Determinar la condición académica según el promedio
+    if (promedio >= 8)
+        printf("Promocionado\n");
+    else if (promedio < 6)
+        printf("Desaprobado\n");
+    else
+        printf("Aprobado\n");
+
+    return 0;
+}
