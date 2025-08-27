@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+    int i;
+    float temp[7];
+
+    // Pedimos las temperaturas
+    for(i = 0; i < 7; i++) {
+        printf("Ingrese la temperatura del día %d: ", i+1);
+        scanf("%f", &temp[i]);
+    }
+
+    // Mostramos en orden inverso
+    printf("\nTemperaturas en orden inverso:\n");
+    for(i = 6; i >= 0; i--) {
+        printf("Día %d: %.2f\n", i+1, temp[i]);
+    }
+
+    return 0;
+}
