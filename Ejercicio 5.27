@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int main() {
+    char caracter;   // Variable para guardar el carácter ingresado
+
+    // Pedir el carácter al usuario
+    printf("Ingrese el caracter: ");
+    scanf(" %c", &caracter);   // El espacio antes de %c evita leer un ENTER anterior
+
+    // Verificar si el carácter es un número (entre '0' y '9')
+    if (caracter >= '0' && caracter <= '9') {
+        printf("El caracter ingresado es un numero\n");
+    } else {
+        printf("El caracter ingresado no es un numero\n");
+    }
+
+    return 0;  // Fin del programa
+}
