@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+    int N;
+    
+    // Pedimos el tamaño del arreglo
+    printf("Ingrese el número de elementos del arreglo: ");
+    scanf("%d", &N);
+
+    if(N <= 0) {
+        printf("El arreglo debe tener al menos un elemento.\n");
+        return 1;
+    }
+
+    int arreglo[N];
+    int i;
+
+    // Leemos los elementos del arreglo
+    for(i = 0; i < N; i++) {
+        printf("Ingrese el elemento[%d]: ", i);
+        scanf("%d", &arreglo[i]);
+    }
+
+    // Inicializamos el mayor con el primer elemento
+    int mayor = arreglo[0];
+
+    // Recorremos el arreglo buscando el mayor
+    for(i = 1; i < N; i++) {
+        if(arreglo[i] > mayor) {
+            mayor = arreglo[i];
+        }
+    }
+
+    // Mostramos el mayor elemento
+    printf("El mayor elemento del arreglo es: %d\n", mayor);
+
+    return 0;
+}
