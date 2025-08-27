@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int main() {
+    int i;
+    float notas[5], suma = 0, max;
+    int pos_max = 0;
+
+    // Leemos las notas
+    for(i = 0; i < 5; i++) {
+        printf("Ingrese la nota del estudiante %d: ", i+1);
+        scanf("%f", &notas[i]);
+        suma += notas[i];  // Sumamos para el promedio
+    }
+
+    // Inicializamos la nota máxima
+    max = notas[0];
+
+    // Buscamos la nota máxima y su posición
+    for(i = 1; i < 5; i++) {
+        if(notas[i] > max) {
+            max = notas[i];
+            pos_max = i;
+        }
+    }
+
+    // Calculamos promedio
+    float promedio = suma / 5;
+
+    // Mostramos resultados
+    printf("\nPromedio: %.2f\n", promedio);
+    printf("Nota máxima: %.2f\n", max);
+    printf("Posición de la nota máxima en el arreglo: %d\n", pos_max);
+
+    return 0;
+}
