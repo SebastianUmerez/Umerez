@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+#define N 3  // Número de filas
+#define M 4  // Número de columnas
+
+int main() {
+    int i, j;
+    int matriz[N][M];
+
+    // Ingresar elementos de la matriz
+    printf("Ingrese los elementos de la matriz %dx%d:\n", N, M);
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < M; j++) {
+            printf("Elemento [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    // Imprimir la matriz
+    printf("\nLa matriz ingresada es:\n");
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < M; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
