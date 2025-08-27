@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+#define N 10  // Máximo número de filas
+#define M 10  // Máximo número de columnas
+
+int main() {
+    int n, m;
+    int i, j;
+    int matriz[N][M];
+
+    // Pedimos n y m con validación
+    do {
+        printf("Ingrese el número de filas (1-%d): ", N-1);
+        scanf("%d", &n);
+        if(n <= 0 || n >= N) {
+            printf("Valor inválido. Debe ser mayor que 0 y menor que %d.\n", N);
+        }
+    } while(n <= 0 || n >= N);
+
+    do {
+        printf("Ingrese el número de columnas (1-%d): ", M-1);
+        scanf("%d", &m);
+        if(m <= 0 || m >= M) {
+            printf("Valor inválido. Debe ser mayor que 0 y menor que %d.\n", M);
+        }
+    } while(m <= 0 || m >= M);
+
+    // Ingresar los elementos de la matriz
+    printf("\nIngrese los elementos de la matriz %dx%d:\n", n, m);
+    for(i = 0; i < n; i++) {
+        for(j = 0; j < m; j++) {
+            printf("Elemento [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    // Imprimir la matriz
+    printf("\nLa matriz ingresada es:\n");
+    for(i = 0; i < n; i++) {
+        for(j = 0; j < m; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
