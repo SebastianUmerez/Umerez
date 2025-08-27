@@ -1,0 +1,70 @@
+#include <stdio.h>
+
+#define N 3  // Número de filas de A
+#define M 4  // Número de columnas de A
+
+int main() {
+    int A[N][M], T[M][N], C[N][N];
+    int i, j, k;
+
+    // Leer matriz A
+    printf("Ingrese los elementos de la matriz A (%dx%d):\n", N, M);
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < M; j++) {
+            printf("A[%d][%d]: ", i, j);
+            scanf("%d", &A[i][j]);
+        }
+    }
+
+    // Calcular la transpuesta T
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < M; j++) {
+            T[j][i] = A[i][j];
+        }
+    }
+
+    // Inicializar la matriz producto C
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < N; j++) {
+            C[i][j] = 0;
+        }
+    }
+
+    // Calcular el producto C = A * T
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < N; j++) {
+            for(k = 0; k < M; k++) {
+                C[i][j] += A[i][k] * T[k][j];
+            }
+        }
+    }
+
+    // Imprimir matriz original
+    printf("\nMatriz A:\n");
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < M; j++) {
+            printf("%d ", A[i][j]);
+        }
+        printf("\n");
+    }
+
+    // Imprimir matriz transpuesta
+    printf("\nMatriz transpuesta T:\n");
+    for(i = 0; i < M; i++) {
+        for(j = 0; j < N; j++) {
+            printf("%d ", T[i][j]);
+        }
+        printf("\n");
+    }
+
+    // Imprimir matriz producto
+    printf("\nMatriz producto C = A * T:\n");
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < N; j++) {
+            printf("%d ", C[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
