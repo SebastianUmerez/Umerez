@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+#define N 3  // Número de filas
+#define M 4  // Número de columnas
+
+int main() {
+    int A[N][M], T[M][N];
+    int i, j;
+
+    // Ingresar elementos de la matriz original
+    printf("Ingrese los elementos de la matriz %dx%d:\n", N, M);
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < M; j++) {
+            printf("A[%d][%d]: ", i, j);
+            scanf("%d", &A[i][j]);
+        }
+    }
+
+    // Copiar a la matriz transpuesta
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < M; j++) {
+            T[j][i] = A[i][j];
+        }
+    }
+
+    // Imprimir matriz original
+    printf("\nMatriz original:\n");
+    for(i = 0; i < N; i++) {
+        for(j = 0; j < M; j++) {
+            printf("%d ", A[i][j]);
+        }
+        printf("\n");
+    }
+
+    // Imprimir matriz transpuesta
+    printf("\nMatriz transpuesta:\n");
+    for(i = 0; i < M; i++) {
+        for(j = 0; j < N; j++) {
+            printf("%d ", T[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
