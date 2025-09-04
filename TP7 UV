@@ -1,0 +1,54 @@
+#include <stdio.h>
+#define TAM 3   // Cantidad fija de productos
+
+int main() {
+    int codigos[TAM];
+    float precios[TAM];
+    int i;
+
+    // Carga de productos con validación
+    for(i = 0; i < TAM; i++) {
+        int codigo;
+        float precio;
+
+        // Validación del código de barras
+        do {
+            printf("Ingrese el codigo[%d] de barras: ", i);
+            scanf("%d", &codigo);
+            if(codigo < 1 || codigo > 999999999) printf("Error\n");
+        } while(codigo < 1 || codigo > 999999999);
+
+        // Validación del precio
+        do {
+            printf("Ingrese el precio: ");
+            scanf("%f", &precio);
+            if(precio < 0) printf("Error\n");
+        } while(precio < 0);
+
+        codigos[i] = codigo;
+        precios[i] = precio;
+    }
+
+    // Mostrar lista completa
+    printf("\nCodigo\t\tPrecio\n");
+    for(i = 0; i < TAM; i++) {
+        printf("%d\t\t%.2f\n", codigos[i], precios[i]);
+    }
+
+    // Buscar el mayor y menor precio
+    int posMax = 0, posMin = 0;
+    for(i = 1; i < TAM; i++) {
+        if(precios[i] > precios[posMax]) {
+            posMax = i;
+        }
+        if(precios[i] < precios[posMin]) {
+            posMin = i;
+        }
+    }
+    
+    // Mostrar resultados
+    printf("\nMas caro:   [%d] %.2f\n", codigos[posMax], precios[posMax]);
+    printf("Mas barato: [%d] %.2f\n", codigos[posMin], precios[posMin]);
+
+    return 0;
+}
