@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <math.h> 
+
+// Función que calcula el área del rectángulo
+float calcularAreaRectangulo(float longitud, float altura) {
+    return longitud * altura;
+}
+
+// Función que calcula el perímetro del rectángulo
+float calcularPerimetroRectangulo(float longitud, float altura) {
+    return 2 * (longitud + altura);
+}
+
+// Función que calcula la diagonal del rectángulo usando Pitágoras
+float calcularDiagonalRectangulo(float longitud, float altura) {
+    return sqrt(pow(longitud, 2) + pow(altura, 2));
+}
+
+// Función que calcula el área del círculo
+float calcularAreaCirculo(float radio) {
+    return 3.1416 * radio * radio;
+}
+
+// Función que calcula el perímetro (circunferencia) del círculo
+float calcularPerimetroCirculo(float radio) {
+    return 2 * 3.1416 * radio;
+}
+
+void imprimirResultados(float area, float perimetro) {
+    printf("El área es: %.2f\n", area);
+    printf("El perímetro es: %.2f\n", perimetro);
+}
+
+int main() {
+    int opcion;
+    float longitud, altura, radio;
+    float area, perimetro, diagonal;
+
+    printf("Ingrese la figura que desea calcular (1: rectángulo, 2: círculo): ");
+    scanf("%d", &opcion);
+
+    if (opcion == 1) {   // Rectángulo
+        printf("Opción de rectángulo seleccionada\n");
+
+        // Pedimos datos al usuario
+        printf("Ingrese la longitud del rectángulo: ");
+        scanf("%f", &longitud);
+
+        printf("Ingrese la altura del rectángulo: ");
+        scanf("%f", &altura);
+
+        // Llamamos a las funciones
+        area = calcularAreaRectangulo(longitud, altura);
+        perimetro = calcularPerimetroRectangulo(longitud, altura);
+        diagonal = calcularDiagonalRectangulo(longitud, altura);
+
+        // Mostramos resultados
+        imprimirResultados(area, perimetro);
+        printf("La diagonal del rectángulo es: %.2f\n", diagonal);
+
+    } else if (opcion == 2) {   // Círculo
+        printf("Opción de círculo seleccionada\n");
+
+        // Pedimos el radio
+        printf("Ingrese el radio del círculo: ");
+        scanf("%f", &radio);
+
+        // Llamamos a las funciones
+        area = calcularAreaCirculo(radio);
+        perimetro = calcularPerimetroCirculo(radio);
+
+        // Mostramos resultados
+        imprimirResultados(area, perimetro);
+
+    } else {
+        printf("Opción inválida. Debe ingresar 1 o 2.\n");
+    }
+    return 0;
+}
