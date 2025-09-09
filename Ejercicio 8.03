@@ -1,0 +1,24 @@
+#include <stdio.h>
+void ingresarEnRango(int *p,int min,int max) {
+    do {
+    printf("ingrese el num: ");
+    scanf("%d", p);
+    if (min > *p || max < *p) printf("Error \n");
+    }while(min > *p || max < *p);
+}
+int main() {
+    int max;
+    int min;
+    int num;
+    printf("ingrese el min: ");
+    scanf("%d", &min);
+    printf("ingrese el max: ");
+    scanf("%d", &max);
+    int val;
+    int *p;
+    p = &val;
+    ingresarEnRango(p,min,max);
+    printf("el numero %d esta entre %d y %d", *p, min, max);
+    return 0;
+    
+}
