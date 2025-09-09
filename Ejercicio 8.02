@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+// Función que calcula suma y producto usando punteros
+void suma_y_producto(float *a, float *b, float *suma, float *producto) {
+    *suma = *a + *b;
+    *producto = (*a) * (*b);
+}
+
+int main() {
+    float num1, num2;
+    float resultado_suma, resultado_producto;
+
+    // Pedir los números en el main
+    printf("Ingrese el primer numero: ");
+    scanf("%f", &num1);
+
+    printf("Ingrese el segundo numero: ");
+    scanf("%f", &num2);
+
+    // Llamar a la función con direcciones de memoria
+    suma_y_producto(&num1, &num2, &resultado_suma, &resultado_producto);
+
+    // Imprimir resultados
+    printf("\nResultados:\n");
+    printf("Suma: %.2f\n", resultado_suma);
+    printf("Producto: %.2f\n", resultado_producto);
+    return 0;
+}
