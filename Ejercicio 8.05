@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+#define N 5   // Cantidad fija de calificaciones
+
+// Función que calcula el promedio usando punteros
+float promedio(int *notas, int n) {
+    int suma = 0;
+    for(int i = 0; i < n; i++) {
+        suma += *(notas + i);  // Acceso con aritmética de punteros
+    }
+    return (float)suma / n;
+}
+
+int main() {
+    int notas[N];
+
+    // Cargar las notas
+    for(int i = 0; i < N; i++) {
+        printf("Ingrese la nota %d: ", i + 1);
+        scanf("%d", &notas[i]);
+    }
+
+    // Calcular promedio (pasamos el puntero al primer elemento)
+    float prom = promedio(notas, N);
+
+    // Mostrar resultado
+    printf("\nEl promedio de las %d notas es: %.2f\n", N, prom);
+
+    return 0;
+}
+
