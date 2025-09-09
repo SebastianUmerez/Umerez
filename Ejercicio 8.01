@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+void ingresar_positivo(int *);
+
+void ingresar_positivo(int *a) {
+    do {
+    printf("ingresar un numero: ");
+    scanf("%d", a);
+    if(*a < 0) printf("ERROR\n");
+    } while (*a<0);
+}
+int main() {
+    int val;
+    int *p;
+    p = &val;
+    ingresar_positivo(p);
+    printf("numero ingresado: %d", *p);
+    return 0;
+}
