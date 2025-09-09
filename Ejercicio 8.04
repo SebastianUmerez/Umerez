@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+#define N 5   // Constante de preprocesador para el tamaño del arreglo
+
+// Función para cargar un arreglo de tamaño n
+void cargar_arreglo(int *vec, int n) {
+    for(int i = 0; i < n; i++) {
+        printf("Ingrese el elemento %d: ", i + 1);
+        scanf("%d", &vec[i]);   // vec[i] equivale a *(vec + i)
+    }
+}
+
+int main() {
+    int vec[N];
+
+    // Llamada a la función para cargar el arreglo
+    cargar_arreglo(vec, N);
+
+    // Imprimir los valores en el main
+    printf("\nNumeros ingresados:\n");
+    for(int i = 0; i < N; i++) {
+        printf("vec[%d] = %d\n", i, vec[i]);
+    }
+
+    return 0;
+}
