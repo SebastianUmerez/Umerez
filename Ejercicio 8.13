@@ -1,0 +1,144 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define N 100   // Tamaño máximo permitido para el arreglo dinámico
+
+// Prototipos
+int ingresar_cantidad_elementos(void);
+void inicializar_arreglo(int *arr, int tam);
+void contar_positivos(int *arr, int tam, int *cant_positivos);
+void contar_negativos(int *arr, int tam, int *cant_negativos);
+void copiar_positivos(int *arr, int *positivos, int tam);
+void copiar_negativos(int *arr, int *negativos, int tam);
+void imprimir_arreglo(int *arr, int tam);
+
+int main(void) {
+    int tam;
+    int *arreglo = NULL;
+    int *positivos = NULL, *negativos = NULL;
+    int cant_positivos = 0, cant_negativos = 0;
+
+    srand(time(NULL)); // Inicializar semilla de aleatorios
+
+    // Requisito 1: Solicitar tamaño del arreglo
+    tam = ingresar_cantidad_elementos();
+
+    // Requisito 2: Reservar espacio para arreglo dinámico
+    arreglo = (int *)malloc(tam * sizeof(int));
+    if (arreglo == NULL) {
+        printf("Error: no se pudo reservar memoria.\n");
+        return 1;
+    }
+
+    // Requisito 3: Inicializar con valores aleatorios entre -100 y 100
+    inicializar_arreglo(arreglo, tam);
+
+    // Requisito 4: Contar positivos y negativos
+    contar_positivos(arreglo, tam, &cant_positivos);
+    contar_negativos(arreglo, tam, &cant_negativos);
+
+    printf("\nCantidad de números positivos: %d", cant_positivos);
+    printf("\nCantidad de números negativos: %d\n", cant_negativos);
+
+    // Requisito 5: Reservar espacio para arreglos positivos y negativos
+    positivos = (int *)malloc(cant_positivos * sizeof(int));
+    negativos = (int *)malloc(cant_negativos * sizeof(int));
+
+    if (positivos == NULL || negativos == NULL) {
+        printf("Error: no se pudo reservar memoria para positivos/negativos.\n");
+        free(arreglo);
+        return 1;
+    }
+
+    // Requisito 6: Copiar positivos y negativos en sus arreglos
+    copiar_positivos(arreglo, positivos, tam);
+    copiar_negativos(arreglo, negativos, tam);
+
+    // Imprimir resultados
+    printf("\nArreglo original:\n");
+    imprimir_arreglo(arreglo, tam);
+
+    printf("\nArreglo de números positivos:\n");
+    imprimir_arreglo(positivos, cant_positivos);
+
+    printf("\nArreglo de números negativos:\n");
+    imprimir_arreglo(negativos, cant_negativos);
+
+    // Liberar memoria
+    free(arreglo);
+    free(positivos);
+    free(negativos);
+
+    return 0;
+}
+
+// Requisito 1: ingresar tamaño válido
+int ingresar_cantidad_elementos(void) {
+    int tam;
+    do {
+        printf("Ingrese la cantidad de elementos (1-%d): ", N);
+        scanf("%d", &tam);
+        if (tam <= 0 || tam >= N) {
+            printf("Error: el valor debe ser positivo y menor que %d.\n", N);
+        }
+    } while (tam <= 0 || tam >= N);
+    return tam;
+}
+
+// Requisito 3: inicializar con números aleatorios entre -100 y 100
+void inicializar_arreglo(int *arr, int tam) {
+    for (int i = 0; i < tam; i++) {
+        *(arr + i) = (rand() % 201) - 100; // -100 a 100
+    }
+}
+
+// Contar positivos
+void contar_positivos(int *arr, int tam, int *cant_positivos) {
+    *cant_positivos = 0;
+    for (int i = 0; i < tam; i++) {
+        if (*(arr + i) > 0) {
+            (*cant_positivos)++;
+        }
+    }
+}
+
+// Contar negativos
+void contar_negativos(int *arr, int tam, int *cant_negativos) {
+    *cant_negativos = 0;
+    for (int i = 0; i < tam; i++) {
+        if (*(arr + i) < 0) {
+            (*cant_negativos)++;
+        }
+    }
+}
+
+// Copiar positivos
+void copiar_positivos(int *arr, int *positivos, int tam) {
+    int *p = positivos;
+    for (int i = 0; i < tam; i++) {
+        if (*(arr + i) > 0) {
+            *p = *(arr + i);
+            p++;
+        }
+    }
+}
+
+// Copiar negativos
+void copiar_negativos(int *arr, int *negativos, int tam) {
+    int *p = negativos;
+    for (int i = 0; i < tam; i++) {
+        if (*(arr + i) < 0) {
+            *p = *(arr + i);
+            p++;
+        }
+    }
+}
+
+// Imprimir arreglo
+void imprimir_arreglo(int *arr, int tam) {
+    for (int i = 0; i < tam; i++) {
+        printf("%d ", *(arr + i));
+    }
+    printf("\n");
+}
