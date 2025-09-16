@@ -1,25 +1,33 @@
 #include <stdio.h>
+#define TAM 500
 
-#define N 5   // Constante de preprocesador para el tamaño del arreglo
+// Prototipo de la función
+void carga(int a[], int n);
 
-// Función para cargar un arreglo de tamaño n
-void cargar_arreglo(int *vec, int n) {
+int main(void) {
+    int n;
+    int arreglo[TAM];
+
+    printf("Ingrese la cantidad de elementos: ");
+    scanf("%d", &n);
+
+    // Llamada a la función para cargar los datos
+    carga(arreglo, n);
+
+    // Mostrar los elementos cargados
+    printf("\nElementos ingresados:\n");
     for(int i = 0; i < n; i++) {
-        printf("Ingrese el elemento %d: ", i + 1);
-        scanf("%d", &vec[i]);   // vec[i] equivale a *(vec + i)
+        printf("%d\n", *(arreglo + i));
     }
+
+    return 0;
 }
 
-int main() {
-    int vec[N];
-
-    // Llamada a la función para cargar el arreglo
-    cargar_arreglo(vec, N);
-
-    // Imprimir los valores en el main
-    printf("\nNumeros ingresados:\n");
-    for(int i = 0; i < N; i++) {
-        printf("vec[%d] = %d\n", i, vec[i]);
+// Definición de la función carga usando punteros
+void carga(int a[], int n) {
+    int *p;
+    for(p = a; p < a + n; p++) {
+        printf("Ingrese un elemento: ");
+        scanf("%d", p);   // p ya apunta a la posición correcta
     }
-    return 0;
 }
