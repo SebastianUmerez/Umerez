@@ -1,0 +1,44 @@
+#include <stdio.h>
+#define N 10
+
+void eliminar_repetidos(int *a, int tam);
+void imprimir_arreglo(int *a, int tam);
+
+int main(void) {
+    int arreglo[N] = {2, 31, 3, 4, 41, 12, 3, 2, 42, 12};
+
+    printf("Arreglo original:\n");
+    imprimir_arreglo(arreglo, N);
+
+    eliminar_repetidos(arreglo, N);
+
+    return 0;
+}
+
+void eliminar_repetidos(int *a, int tam) {
+    int i, j, k;
+    int nuevo_tam = tam;
+
+    for (i = 0; i < nuevo_tam; i++) {
+        for (j = i + 1; j < nuevo_tam; j++) {
+            if (*(a + i) == *(a + j)) {
+                // Desplazar todos los elementos hacia la izquierda
+                for (k = j; k < nuevo_tam - 1; k++) {
+                    *(a + k) = *(a + k + 1);
+                }
+                nuevo_tam--;
+                j--; // Reajustar índice para volver a revisar la posición
+            }
+        }
+    }
+
+    printf("Arreglo sin duplicados:\n");
+    imprimir_arreglo(a, nuevo_tam);
+}
+
+void imprimir_arreglo(int *a, int tam) {
+    for (int i = 0; i < tam; i++) {
+        printf("%d ", *(a + i));
+    }
+    printf("\n");
+}
