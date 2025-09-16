@@ -1,0 +1,71 @@
+#include <stdio.h>
+#define N 10
+
+// Prototipos
+void ingresar_y_verificar_elementos(int *a, int tam);
+void convertir_a_par(int *a, int tam);
+int copiar_negativos(int *arr, int *negativos, int tam);
+
+int main(void) {
+    int arreglo[N] = {0};
+    int negativos[N] = {0};
+    int cant_negativos = 0;
+
+    // Ingreso de valores
+    ingresar_y_verificar_elementos(arreglo, N);
+
+    // Convierte impares a pares
+    convertir_a_par(arreglo, N);
+
+    // Copiar negativos a otro arreglo
+    cant_negativos = copiar_negativos(arreglo, negativos, N);
+
+    // Mostrar resultados
+    printf("\nArreglo modificado (impares convertidos a pares):\n");
+    for (int i = 0; i < N; i++) {
+        printf("%d ", arreglo[i]);
+    }
+
+    printf("\n\nArreglo de negativos:\n");
+    for (int i = 0; i < cant_negativos; i++) {
+        printf("%d ", negativos[i]);
+    }
+
+    printf("\n");
+
+    return 0;
+}
+
+// Requisito 1: ingresar N valores (no puede ser cero)
+void ingresar_y_verificar_elementos(int *a, int tam) {
+    for (int i = 0; i < tam; i++) {
+        do {
+            printf("Ingrese el elemento [%d] (no puede ser 0): ", i);
+            scanf("%d", (a + i));
+            if (*(a + i) == 0) {
+                printf("Valor inválido. No puede ser cero.\n");
+            }
+        } while (*(a + i) == 0);
+    }
+}
+
+// Requisito 2: convierte impares en el par inmediatamente superior
+void convertir_a_par(int *a, int tam) {
+    for (int i = 0; i < tam; i++) {
+        if (*(a + i) % 2 != 0) {  
+            (*(a + i))++;  // Si es impar, sumamos 1
+        }
+    }
+}
+
+// Requisito 3: copia negativos a otro arreglo, retorna cantidad
+int copiar_negativos(int *arr, int *negativos, int tam) {
+    int j = 0;
+    for (int i = 0; i < tam; i++) {
+        if (*(arr + i) < 0) {
+            *(negativos + j) = *(arr + i);
+            j++;
+        }
+    }
+    return j;  // cantidad de negativos copiados
+}
