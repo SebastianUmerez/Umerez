@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+#define N 30   // Cantidad de calificaciones
+
+// Función que devuelve el máximo
+int max(int *vec, int n) {
+    int *p = vec;          // puntero de recorrido
+    int mayor = *p;        // inicializo con el primer elemento
+    for(int i = 1; i < n; i++) {
+        if(*(vec + i) > mayor) {
+            mayor = *(vec + i);
+        }
+    }
+    return mayor;
+}
+
+// Función que devuelve el mínimo
+int min(int *vec, int n) {
+    int *p = vec;          // puntero de recorrido
+    int menor = *p;        // inicializo con el primer elemento
+    for(int i = 1; i < n; i++) {
+        if(*(vec + i) < menor) {
+            menor = *(vec + i);
+        }
+    }
+    return menor;
+}
+
+int main() {
+    int notas[N];
+    int *p = notas;
+
+    // Cargar las calificaciones usando punteros
+    for(int i = 0; i < N; i++) {
+        printf("Ingrese la nota %d: ", i + 1);
+        scanf("%d", (p + i));   // equivale a &notas[i]
+    }
+
+    // Calcular máximo y mínimo
+    int mayor = max(notas, N);
+    int menor = min(notas, N);
+
+    // Mostrar resultados
+    printf("\nLa nota mayor es: %d\n", mayor);
+    printf("La nota menor es: %d\n", menor);
+
+    return 0;
+}
