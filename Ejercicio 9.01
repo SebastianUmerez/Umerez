@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+
+// Definición de estructuras
+struct inventario {
+    char nombre[30];
+    int numero_parte;
+    float precio;
+    int stock;
+};
+
+struct direccion {
+    char calle[20];
+    char ciudad[25];
+    char codpost[6];
+};
+
+int main(void) {
+    // Inicialización de inventario
+    struct inventario prod1 = {"Taladro", 101, 4599.99, 15};
+    
+    // Inicialización de dirección
+    struct direccion dir1;
+    strcpy(dir1.calle, "Av. Siempre Viva");
+    strcpy(dir1.ciudad, "Springfield");
+    strcpy(dir1.codpost, "12345");
+
+    // Mostrar inventario
+    printf("=== Inventario ===\n");
+    printf("Nombre: %s\n", prod1.nombre);
+    printf("Número de parte: %d\n", prod1.numero_parte);
+    printf("Precio: %.2f\n", prod1.precio);
+    printf("Stock: %d\n", prod1.stock);
+
+    // Mostrar dirección
+    printf("\n=== Dirección ===\n");
+    printf("Calle: %s\n", dir1.calle);
+    printf("Ciudad: %s\n", dir1.ciudad);
+    printf("Código Postal: %s\n", dir1.codpost);
+
+    return 0;
+}
