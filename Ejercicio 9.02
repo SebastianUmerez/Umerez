@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+struct cliente {
+    char apellido[20];
+    char nombre[20];
+    int numero;
+    int dni;
+    char calle[20];
+    char ciudad[20];
+};
+
+int main(void) {
+    struct cliente c1;
+
+    // Ingreso de datos
+    printf("Ingrese apellido: ");
+    scanf("%19s", c1.apellido); // %19s para evitar desbordamiento
+
+    printf("Ingrese nombre: ");
+    scanf("%19s", c1.nombre);
+
+    printf("Ingrese numero de cliente: ");
+    scanf("%d", &c1.numero);
+
+    printf("Ingrese DNI: ");
+    scanf("%d", &c1.dni);
+
+    printf("Ingrese calle: ");
+    scanf("%19s", c1.calle);
+
+    printf("Ingrese ciudad: ");
+    scanf("%19s", c1.ciudad);
+
+    // Mostrar datos cargados
+    printf("\n=== Datos del cliente ===\n");
+    printf("Apellido: %s\n", c1.apellido);
+    printf("Nombre: %s\n", c1.nombre);
+    printf("Número de cliente: %d\n", c1.numero);
+    printf("DNI: %d\n", c1.dni);
+    printf("Calle: %s\n", c1.calle);
+    printf("Ciudad: %s\n", c1.ciudad);
+
+    return 0;
+}
