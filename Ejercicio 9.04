@@ -1,0 +1,83 @@
+#include <stdio.h>
+#define CANT_ALU 3
+#define CANT_NOTAS 3   // cantidad de notas que se cargan
+
+struct alumno {
+    int legajo;
+    char nombre[20];
+    char apellido[20];
+    char curso[3];
+    int notas[CANT_NOTAS];
+    float promedio;
+    char estado;  // 'P' = Promoción, 'R' = Regular, 'L' = Libre
+};
+
+int main(void)
+{
+    struct alumno alumnos[CANT_ALU];
+
+    for (int i = 0; i < CANT_ALU; i++) {
+        printf("\n=== Ingreso de datos del alumno %d ===\n", i + 1);
+
+        // Validar legajo positivo
+        do {
+            printf("Legajo: ");
+            scanf("%d", &alumnos[i].legajo);
+            if (alumnos[i].legajo <= 0) {
+                printf("Error: el legajo debe ser un número positivo.\n");
+            }
+        } while (alumnos[i].legajo <= 0);
+
+        printf("Nombre: ");
+        scanf("%19s", alumnos[i].nombre);
+
+        printf("Apellido: ");
+        scanf("%19s", alumnos[i].apellido);
+
+        printf("Curso: ");
+        scanf("%2s", alumnos[i].curso);
+
+        // Ingreso de notas
+        int suma = 0;
+        for (int j = 0; j < CANT_NOTAS; j++) {
+            printf("Nota %d: ", j + 1);
+            scanf("%d", &alumnos[i].notas[j]);
+            suma += alumnos[i].notas[j];
+        }
+
+        // Calcular promedio
+        alumnos[i].promedio = suma / (float)CANT_NOTAS;
+
+        // Determinar estado académico
+        if (alumnos[i].promedio >= 8.0)
+            alumnos[i].estado = 'P';  // Promoción
+        else if (alumnos[i].promedio >= 6.0)
+            alumnos[i].estado = 'R';  // Regular
+        else
+            alumnos[i].estado = 'L';  // Libre
+    }
+
+    // Mostrar resultados
+    printf("\n=== Datos de los alumnos cargados ===\n");
+    for (int i = 0; i < CANT_ALU; i++) {
+        printf("\nAlumno %d:\n", i + 1);
+        printf("Legajo: %d\n", alumnos[i].legajo);
+        printf("Nombre: %s\n", alumnos[i].nombre);
+        printf("Apellido: %s\n", alumnos[i].apellido);
+        printf("Curso: %s\n", alumnos[i].curso);
+        printf("Notas: ");
+        for (int j = 0; j < CANT_NOTAS; j++) {
+            printf("%d ", alumnos[i].notas[j]);
+        }
+        printf("\nPromedio: %.2f\n", alumnos[i].promedio);
+
+        if (alumnos[i].estado == 'P')
+            printf("Estado: Promoción\n");
+        else if (alumnos[i].estado == 'R')
+            printf("Estado: Regular\n");
+        else
+            printf("Estado: Libre\n");
+    }
+
+    return 0;
+}
