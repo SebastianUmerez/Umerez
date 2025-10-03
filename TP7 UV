@@ -39,12 +39,8 @@ int main() {
     // Buscar el mayor y menor precio
     int posMax = 0, posMin = 0;
     for(i = 1; i < TAM; i++) {
-        if(precios[i] > precios[posMax]) {
-            posMax = i;
-        }
-        if(precios[i] < precios[posMin]) {
-            posMin = i;
-        }
+        if(precios[i] > precios[posMax]) posMax = i;
+        if(precios[i] < precios[posMin]) posMin = i;
     }
     
     // Mostrar resultados
