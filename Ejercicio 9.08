@@ -1,0 +1,64 @@
+#include <stdio.h>
+#define N 2
+// Definición de la estructura vehiculo
+struct vehiculo {
+    char marca[20];        // Marca del vehículo
+    char modelo[20];       // Modelo del vehículo
+    int year;              // Año del vehículo
+    int kilometraje;       // Kilometraje del vehículo
+};
+
+int main(void) {
+    struct vehiculo autos[N];  // Arreglo de 5 vehículos
+    int i, Mayor = 0;    // Variable para guardar índice del mayor kilometraje
+
+    // Ingreso de datos
+    for (i = 0; i < N; i++) {
+        printf("Ingreso de datos del vehículo %d\n", i + 1);
+
+        printf("Marca: ");
+        scanf(" %[^\n]", autos[i].marca);  // Lee cadena con espacios
+
+        printf("Modelo: ");
+        scanf(" %[^\n]", autos[i].modelo); // Lee cadena con espacios
+
+        // Validar que el año sea positivo
+        do {
+            printf("Año: ");
+            scanf("%d", &autos[i].year);
+            if (autos[i].year <= 0) printf("ERROR\n");
+        } while (autos[i].year <= 0);
+
+        // Validar que el kilometraje sea positivo
+        do {
+            printf("Kilometraje: ");
+            scanf("%d", &autos[i].kilometraje);
+            if (autos[i].kilometraje < 0) printf("ERROR\n");
+        } while (autos[i].kilometraje < 0);
+    }
+
+    // Buscar el vehículo con mayor kilometraje
+    for (i = 1; i < N; i++) {
+        if (autos[i].kilometraje > autos[Mayor].kilometraje) Mayor = i;
+    }
+
+    // Mostrar todos los vehículos
+    printf(" %-15s %-15s %-6s %-10s\n", "Marca", "Modelo", "Año", "Km");
+
+    for (i = 0; i < N; i++) {
+        printf(" %-15s %-15s %-6d %-10d\n",
+               autos[i].marca,
+               autos[i].modelo,
+               autos[i].year,
+               autos[i].kilometraje);
+    }
+
+    // Mostrar el vehículo con mayor kilometraje
+    printf("\nVehículo con mayor kilometraje:\n");
+    printf("Marca: %s\n", autos[Mayor].marca);
+    printf("Modelo: %s\n", autos[Mayor].modelo);
+    printf("Año: %d\n", autos[Mayor].year);
+    printf("Kilometraje: %d km\n", autos[Mayor].kilometraje);
+
+    return 0;
+}
