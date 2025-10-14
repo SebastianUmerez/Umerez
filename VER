@@ -1,0 +1,39 @@
+#include <stdio.h>
+#define N 2
+struct vehiculo {
+    char marca[20];
+    char modelo[20];
+    int year;
+    int kilometraje;
+};
+int main() {
+    struct vehiculo autos[N]; 
+    for(int i = 0; i < N; i++) {
+        printf("vehiculo[%d] \n", i + 1);
+        printf("ingresar la marca: ");
+        scanf("%s",autos[i].marca);
+        
+        printf("ingresar el modelo: ");
+        scanf("%s",autos[i].modelo);
+        
+        do {
+            printf("ingresar el año: ");
+            scanf("%d",&autos[i].year);
+            if(autos[i].year < 0) printf("ERROR\n");
+        } while(autos[i].year < 0);
+        
+        do {
+            printf("ingresar el kilometraje: ");
+            scanf("%d",&autos[i].kilometraje);
+            if(autos[i].kilometraje < 0) printf("ERROR\n");
+        } while(autos[i].kilometraje < 0);
+    }
+    for(int i = 0; i < N; i++) {
+        printf("\nDatos de los vehiculos[%d] \n", i+1);
+        printf("Nombre: %s \n",autos[i].marca);
+        printf("Legajo: %s \n",autos[i].modelo);
+        printf("Calle: %d \n",autos[i].year);
+        printf("Numero: %d \n",autos[i].kilometraje);
+    }
+    return 0;
+}
