@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+struct producto {
+    char nombre[30];
+    float precio;
+    int cantidad;
+};
+
+struct producto cargar_producto(void);
+void imprimir_producto(struct producto p); 
+
+struct producto cargar_producto(void) {
+    struct producto prod;
+    printf("ingresar el nombre: ");
+    scanf("%s",prod.nombre);
+    printf("ingresar el precio: ");
+    scanf("%f",&prod.precio);
+    printf("ingresar el cantidad: ");
+    scanf("%d",&prod.cantidad);
+    return prod;
+}
+void imprimir_producto(struct producto p) {
+    printf("\nDatos del producto \n");
+    printf("Nombre: %s \n",p.nombre);
+    printf("Precio: %.2f \n",p.precio);
+    printf("Cantidad: %d \n",p.cantidad);
+}
+int main() {
+    struct producto product = cargar_producto();
+    imprimir_producto(product);
+    return 0;
+} //typedef
