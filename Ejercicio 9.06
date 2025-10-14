@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+// Definición de la estructura inventario
+struct inventario {
+    char nombre[30];     // nombre del producto
+    int numero_parte;    // número de parte o código
+    float precio;        // precio unitario
+    int stock;           // cantidad disponible en inventario
+};
+
+// Declaración de la función
+void imprimir_inventario(struct inventario item);
+
+int main(void) {
+    // Declaración e inicialización de una variable de tipo inventario
+    struct inventario item1 = {"Resistor 10k", 1234, 0.15, 250};
+
+    // Llamada a la función para imprimir el inventario
+    imprimir_inventario(item1);
+
+    return 0;
+}
+
+// Definición de la función imprimir_inventario
+void imprimir_inventario(struct inventario item) {
+    // Muestra por pantalla el contenido de la estructura recibida
+    printf("=== Datos del inventario ===\n");
+    printf("Nombre del producto: %s\n", item.nombre);
+    printf("Número de parte: %d\n", item.numero_parte);
+    printf("Precio: $%.2f\n", item.precio);
+    printf("Stock disponible: %d unidades\n", item.stock);
+}
