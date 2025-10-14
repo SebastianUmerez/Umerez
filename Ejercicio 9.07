@@ -1,0 +1,51 @@
+#include <stdio.h>
+#define N 3
+// Definición de la estructura libro
+struct libro {
+    char titulo[50];   // título del libro
+    char autor[40];    // nombre del autor
+    int year;          // año de publicación
+    float precio;      // precio del libro
+};
+
+int main(void) {
+    struct libro libros[N];  // arreglo de 3 libros
+    int i;
+
+    // Ingreso de datos
+    for (i = 0; i < N; i++) {
+        printf("Ingreso de datos del libro %d \n", i + 1);
+
+        printf("Título: ");
+        scanf(" %[^\n]", libros[i].titulo);   //incluye espacios
+
+        printf("Autor: ");
+        scanf(" %[^\n]", libros[i].autor);    //incluye espacios
+
+        // Validar que el año sea mayor que 0
+        do {
+            printf("Año de publicación: ");
+            scanf("%d", &libros[i].year);
+            if (libros[i].year <= 0) printf("ERROR\n");
+        } while (libros[i].year <= 0);
+
+        // Validar que el precio sea positivo
+        do {
+            printf("Precio: ");
+            scanf("%f", &libros[i].precio);
+            if (libros[i].precio <= 0) printf("ERROR\n");
+        } while (libros[i].precio <= 0);
+    }
+
+    // Mostrar los datos en formato tabular
+    printf(" %-25s %-20s %-5s %-8s\n", "Título", "Autor", "Año", "Precio");
+    for (i = 0; i < N; i++) {
+        printf(" %-25s %-20s %-5d $%-7.2f\n",
+               libros[i].titulo,
+               libros[i].autor,
+               libros[i].year,
+               libros[i].precio);
+    }
+
+    return 0;
+}
