@@ -1,0 +1,45 @@
+
+#include <stdio.h>
+
+struct domicilio {
+    char calle[30];
+    int numero;
+    char ciudad[30];
+};
+struct alumno {
+    char nombre[30];
+    int legajo;
+    struct domicilio dom;
+};
+int main() {
+    struct alumno alm;
+    printf("ingresar el nombre: ");
+    scanf("%s",alm.nombre);
+    
+    do {
+    printf("ingresar el legajo: ");
+    scanf("%d",&alm.legajo);
+    if(alm.legajo < 0) printf("Error \n");
+    } while(alm.legajo < 0);
+    
+    printf("ingresar el calle: ");
+    scanf("%s",alm.dom.calle);
+    
+    do {
+    printf("ingresar el numero de calle: ");
+    scanf("%d",&alm.dom.numero);
+    if(alm.dom.numero < 0) printf("Error \n");
+    } while(alm.dom.numero < 0);
+    
+    printf("ingresar la ciudad: ");
+    scanf("%s",alm.dom.ciudad);
+    
+    printf("\nDatos de alumnos \n");
+    printf("Nombre: %s \n",alm.nombre);
+    printf("Legajo: %d \n",alm.legajo);
+    printf("Calle: %s \n",alm.dom.calle);
+    printf("Numero: %d \n",alm.dom.numero);
+    printf("Ciudad: %s \n",alm.nombre);
+    
+    return 0;
+}
