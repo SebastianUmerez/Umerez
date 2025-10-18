@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #define TAM 20
 
+// Prototipos dados en el enunciado
 int cuantas_piezas(int);
 int rectificable(float, float);
 int rechazada(float, float);
@@ -11,7 +12,9 @@ float* reservar_memoria(int);
 void segregar(int (*)(float, float), float, float *, int, float *);
 void mostrar_piezas(char *, float *, int);
 
-int main (void) {
+// Función principal
+int main(void) {
+
     float diametros[TAM] = {0};
     int n;
     float max = 12;
@@ -28,15 +31,17 @@ int main (void) {
     float *p_rechazadas = reservar_memoria(n_rechazar);
     segregar(rechazada, min, diametros, n, p_rechazadas);
 
-    mostrar_piezas("Piezas rectificables:", p_rectificables, n_rectificar);
-    mostrar_piezas("Piezas rechazadas:", p_rechazadas, n_rechazar);
+    mostrar_piezas("\n rectificables", p_rectificables, n_rectificar);
+    mostrar_piezas("\n rechazadas", p_rechazadas, n_rechazar);
 
+    // Liberamos memoria dinámica antes de finalizar
     free(p_rectificables);
     free(p_rechazadas);
 
     return 0;
 }
 
+// FUNCIONES BASE
 int cuantas_piezas(int max) {
     int n;
     do {
@@ -46,65 +51,66 @@ int cuantas_piezas(int max) {
     return n;
 }
 
+// Devuelve 1 si el diámetro es mayor al valor dado (rectificable)
 int rectificable(float diametro, float valor) {
-    if (diametro > valor)
-        return 1;
-    else
-        return 0;
+    if (diametro > valor) return 1;
+    else return 0;
 }
 
+// Devuelve 1 si el diámetro es menor al valor dado (rechazada)
 int rechazada(float diametro, float valor) {
-    if (diametro < valor)
-        return 1;
-    else
-        return 0;
+    if (diametro < valor) return 1;
+    else return 0;
 }
 
-/* a) cargar_piezas */
+//a) cargar_piezas
 void cargar_piezas(float *p, int n) {
+    float valor;
     for (int i = 0; i < n; i++) {
-        float valor;
         do {
             printf("Ingrese diámetro de pieza %d: ", i);
             scanf("%f", &valor);
             if (valor <= 0) printf("Error \n");
         } while (valor <= 0);
-        *(p+i) = valor;
+
+        *(p + i) = valor; // Guardamos el valor en la posición i del arreglo
     }
 }
 
-/* b) contar */
+//b) contar
 int contar(int (*criterio)(float, float), float valor, float *p, int n) {
     int contador = 0;
+    // Recorremos todas las piezas
     for (int i = 0; i < n; i++) {
-        if (criterio(*(p+i), valor)) {
-            contador++;
-        }
+        // Si la función criterio devuelve 1, incrementa el contador
+        if (criterio(*(p + i), valor) == 1) contador++;
     }
-    return contador;
+    return contador; // Retorna la cantidad total que cumple el criterio
 }
 
-/* c) reservar_memoria */
+//c) reservar_memoria
 float *reservar_memoria(int n) {
-    float *p = (float*) malloc(n * sizeof(float));
-    return p;
+    float *ptr = (float *) malloc(n * sizeof(float));
+    return ptr; // Devuelve el puntero al bloque de memoria reservado
 }
 
-/* d) segregar */
-void segregar(int (*criterio)(float, float), float valor, float *p, int n, float *q) {
-    int j = 0;
+//d) segregar
+void segregar
+(int (*criterio)(float, float), float valor, float *p, int n, float *q) {
+    int j = 0; // índice para el arreglo destino
     for (int i = 0; i < n; i++) {
-        if (criterio(*(p+i), valor)) {
-            *(q+j) = *(p+i);
+        if (criterio(*(p + i), valor) == 1) {
+            *(q + j) = *(p + i); // copia el valor que cumple el criterio
             j++;
         }
     }
 }
 
-/* e) mostrar_piezas */
+//e) mostrar_piezas
 void mostrar_piezas(char *mensaje, float *p, int n) {
     printf("%s\n", mensaje);
     for (int i = 0; i < n; i++) {
         printf("Diámetro: %.2f\n", *(p+i));
     }
 }
+
