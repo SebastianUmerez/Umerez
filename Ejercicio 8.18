@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+// Función que incrementa en 1 el valor al que apunta el puntero
+void incrementar(int *p) {
+    *p = *p + 1;  // Suma 1 al valor almacenado en la dirección de memoria que apunta p
+}
+
+int main(void) {
+    int num;  // Variable para guardar el número ingresado
+
+    // Solicitar el número al usuario
+    printf("Ingrese un número entero: ");
+    scanf("%d", &num);
+
+    // Llamar a la función pasando la dirección de num
+    incrementar(&num);
+
+    // Mostrar el resultado
+    printf("El número incrementado es: %d\n", num);
+
+    return 0;
+}
