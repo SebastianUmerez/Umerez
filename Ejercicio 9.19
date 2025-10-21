@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+// a) Definir la estructura parte
+typedef struct {
+    unsigned int partNumber;
+    char partName[25];
+} Part; // b) Definir Part como sinónimo de struct parte
+
+int main(void) {
+    // c) Declaraciones
+    Part a;            // variable de tipo Part
+    Part b[10];        // arreglo de 10 elementos de tipo Part
+    Part *ptr;         // puntero a Part
+
+    // d) Leer datos en la variable 'a'
+    printf("Ingrese el número de parte: ");
+    scanf("%u", &a.partNumber);
+
+    printf("Ingrese el nombre de la parte: ");
+    scanf(" %[^\n]", a.partName); // permite espacios en el nombre
+
+    // e) Asignar los valores de 'a' al elemento 3 de la matriz b
+    b[3] = a;
+
+    // f) Asignar la dirección de la matriz b a ptr
+    ptr = b;
+
+    // g) Imprimir los valores del elemento 3 usando ptr
+    printf("\nElemento 3 de la matriz b:\n");
+    printf("Numero de parte: %u\n", (ptr + 3)->partNumber);
+    printf("Nombre de la parte: %s\n", (ptr + 3)->partName);
+
+    return 0;
+}
