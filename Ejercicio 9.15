@@ -1,0 +1,92 @@
+#include <stdio.h>
+
+#define CANT_ALUM 3
+
+typedef struct {
+    char nombre[30];
+    int legajo;
+    float notas[3];
+    float promedio;
+    char estado[12]; // suficiente para "Promocionado"
+} alumno;
+
+// Función para cargar los datos de un alumno
+void cargar_alumno(alumno *a) {
+    int i, j;
+
+    printf("Ingrese nombre del alumno: ");
+    scanf(" %[^\n]", a->nombre);  // %[^\n] permite espacios
+
+    do {
+        printf("Ingrese legajo (positivo): ");
+        scanf("%d", &a->legajo);
+    } while(a->legajo <= 0);
+
+    for(i = 0; i < 3; i++) {
+        do {
+            printf("Ingrese nota %d (0-10): ", i + 1);
+            scanf("%f", &a->notas[i]);
+        } while(a->notas[i] < 0 || a->notas[i] > 10);
+    }
+}
+
+// Función para calcular el promedio
+void calcular_promedio(alumno *a) {
+    int i;
+    float suma = 0;
+    for(i = 0; i < 3; i++)
+        suma += a->notas[i];
+    a->promedio = suma / 3.0;
+}
+
+// Función para determinar el estado según promedio
+void determinar_estado(alumno *a) {
+    int i;
+    char estado_temp[12] = "";
+
+    if(a->promedio >= 8.0) {
+        char msg[] = "Promocionado";
+        for(i = 0; msg[i] != '\0'; i++)
+            a->estado[i] = msg[i];
+        a->estado[i] = '\0';
+    } else if(a->promedio >= 6.0) {
+        char msg[] = "Regular";
+        for(i = 0; msg[i] != '\0'; i++)
+            a->estado[i] = msg[i];
+        a->estado[i] = '\0';
+    } else {
+        char msg[] = "Libre";
+        for(i = 0; msg[i] != '\0'; i++)
+            a->estado[i] = msg[i];
+        a->estado[i] = '\0';
+    }
+}
+
+// Función para imprimir los datos de un alumno
+void imprimir_alumno(alumno a) {
+    printf("\nNombre: %s\n", a.nombre);
+    printf("Legajo: %d\n", a.legajo);
+    printf("Notas: %.2f, %.2f, %.2f\n", a.notas[0], a.notas[1], a.notas[2]);
+    printf("Promedio: %.2f\n", a.promedio);
+    printf("Estado: %s\n", a.estado);
+}
+
+int main(void) {
+    alumno alumnos[CANT_ALUM];
+    int i;
+
+    // Cargar alumnos
+    for(i = 0; i < CANT_ALUM; i++) {
+        printf("\n--- Alumno %d ---\n", i + 1);
+        cargar_alumno(&alumnos[i]);
+        calcular_promedio(&alumnos[i]);
+        determinar_estado(&alumnos[i]);
+    }
+
+    // Imprimir información de los alumnos
+    printf("\n=== Información de alumnos ===\n");
+    for(i = 0; i < CANT_ALUM; i++)
+        imprimir_alumno(alumnos[i]);
+
+    return 0;
+}
