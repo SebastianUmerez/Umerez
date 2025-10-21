@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+// Función que intercambia los valores de dos enteros usando punteros
+void intercambiar(int *a, int *b) {
+    int temp;   // Variable auxiliar para guardar un valor temporalmente
+    temp = *a;  // Guardamos el valor apuntado por 'a'
+    *a = *b;    // Asignamos el valor apuntado por 'b' al lugar donde apunta 'a'
+    *b = temp;  // Asignamos el valor guardado en temp al lugar donde apunta 'b'
+}
+
+int main(void) {
+    int num1, num2;
+
+    // Pedimos los dos números al usuario
+    printf("Ingrese el primer número: ");
+    scanf("%d", &num1);
+
+    printf("Ingrese el segundo número: ");
+    scanf("%d", &num2);
+
+    // Mostramos los valores antes del intercambio
+    printf("\nAntes del intercambio:\n");
+    printf("num1 = %d, num2 = %d\n", num1, num2);
+
+    // Llamamos a la función pasando las direcciones de las variables
+    intercambiar(&num1, &num2);
+
+    // Mostramos los valores después del intercambio
+    printf("\nDespués del intercambio:\n");
+    printf("num1 = %d, num2 = %d\n", num1, num2);
+
+    return 0;
+}
