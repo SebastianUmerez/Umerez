@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define CANT 100
+
+typedef struct {
+    int palo : 4; // 0: basto, 1: copa, 2: espada, 3: oro
+    int num  : 12; // 1 a 12
+} cartasBit_t;
+
+/* Función que recibe un puntero a un mazo de cartas
+ * y lo inicializa con valores aleatorios
+ */
+void crear_baraja(cartasBit_t *mazo, int cant) {
+    for(int i = 0; i < cant; i++) {
+        *(mazo + i) = (cartasBit_t){ rand() % 4, (rand() % 12) + 1 };
+    }
+}
+
+/* Función que recibe un puntero a un mazo de cartas
+ * e imprime dos columnas correspondientes a las cartas
+ * de cada uno de los dos jugadores
+ */
+void repartir_baraja(cartasBit_t *mazo, int cant) {
+    printf("Carta Palo Número\tCarta Palo Número\n");
+    for(int i = 0; i < cant; i += 2) {
+        if(i + 1 < cant)
+            printf("%d %d %d\t\t%d %d %d\n",
+                i, (mazo + i)->palo, (mazo + i)->num,
+                i + 1, (mazo + i + 1)->palo, (mazo + i + 1)->num);
+        else
+            printf("%d %d %d\n",
+                i, (mazo + i)->palo, (mazo + i)->num);
+    }
+}
+
+int main(void) {
+    cartasBit_t cartas[CANT];
+    srand(time(NULL)); // inicializar semilla aleatoria
+
+    printf("Inicializando el mazo...\n");
+    crear_baraja(cartas, CANT);
+
+    printf("Repartiendo el mazo...\n");
+    repartir_baraja(cartas, CANT);
+
+    return 0;
+}
