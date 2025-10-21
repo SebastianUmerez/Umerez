@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+// Definición de la estructura
+typedef struct {
+    char apodo[20];
+    int rango;
+    float vida;
+    float escudo;
+    float sales;
+    struct {
+        char nombre[20];
+        char apellido[20];
+        int edad;
+    } info_personal;
+} personaje_t;
+
+// Función para imprimir los datos de un personaje
+void mostrar_personaje(personaje_t *p) {
+    printf("\n-------Datos-------\n");
+    printf("El apodo es: %s\n", p->apodo);
+    printf("Rango: %d\n", p->rango);
+    printf("Vida: %.6f\n", p->vida);
+    printf("Escudo: %.6f\n", p->escudo);
+    printf("Sales: %.6f\n", p->sales);
+    printf("El nombre es: %s\n", p->info_personal.nombre);
+    printf("El apellido es: %s\n", p->info_personal.apellido);
+    printf("Edad: %d\n", p->info_personal.edad);
+}
+
+int main(void) {
+    srand(time(NULL)); // Inicializar semilla para aleatorio
+
+    personaje_t personaje;
+    personaje_t *pPersonaje = &personaje;
+
+    // Cargar elementos directamente
+    printf("-------Cargar los elementos directamente-------\n");
+    printf("Ingrese su apodo: ");
+    scanf(" %[^\n]", personaje.apodo);
+
+    printf("Ingrese su nombre: ");
+    scanf(" %[^\n]", personaje.info_personal.nombre);
+
+    printf("Ingrese su apellido: ");
+    scanf(" %[^\n]", personaje.info_personal.apellido);
+
+    printf("Ingrese su edad: ");
+    scanf("%d", &personaje.info_personal.edad);
+
+    // Inicialización de los demás miembros
+    personaje.vida = 150.0f;
+    personaje.escudo = 0.0f;
+    personaje.sales = 0.0f;
+    personaje.rango = rand() % 101; // 0 a 100
+
+    // Mostrar datos
+    mostrar_personaje(&personaje);
+
+    // Cargar elementos mediante puntero
+    printf("\n-------Cargar los elementos mediante puntero-------\n");
+    printf("Ingrese su apodo: ");
+    scanf(" %[^\n]", pPersonaje->apodo);
+
+    printf("Ingrese su nombre: ");
+    scanf(" %[^\n]", pPersonaje->info_personal.nombre);
+
+    printf("Ingrese su apellido: ");
+    scanf(" %[^\n]", pPersonaje->info_personal.apellido);
+
+    printf("Ingrese su edad: ");
+    scanf("%d", &pPersonaje->info_personal.edad);
+
+    // Inicialización de los demás miembros mediante puntero
+    pPersonaje->vida = 150.0f;
+    pPersonaje->escudo = 0.0f;
+    pPersonaje->sales = 0.0f;
+    pPersonaje->rango = rand() % 101; // 0 a 100
+
+    // Mostrar datos
+    mostrar_personaje(pPersonaje);
+
+    return 0;
+}
