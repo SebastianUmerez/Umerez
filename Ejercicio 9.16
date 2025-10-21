@@ -1,0 +1,60 @@
+#include <stdio.h>
+
+typedef struct {
+    char nombre[30];
+    float precio;
+    int stock;
+} producto;
+
+// Función para cargar los datos de un producto
+void cargar_producto(producto *p) {
+    printf("Ingrese nombre del producto: ");
+    scanf(" %[^\n]", p->nombre);  // %[^\n] permite leer con espacios
+
+    do {
+        printf("Ingrese precio del producto: ");
+        scanf("%f", &p->precio);
+    } while(p->precio < 0);
+
+    do {
+        printf("Ingrese stock inicial: ");
+        scanf("%d", &p->stock);
+    } while(p->stock < 0);
+}
+
+// Función para imprimir los datos de un producto
+void imprimir_producto(producto p) {
+    printf("\nNombre: %s\n", p.nombre);
+    printf("Precio: %.2f\n", p.precio);
+    printf("Stock: %d\n", p.stock);
+}
+
+// Función para actualizar el stock
+void actualizar_stock(producto *p, int cantidad) {
+    p->stock += cantidad;
+}
+
+int main(void) {
+    producto p;
+    int cantidad;
+
+    // Cargar producto
+    cargar_producto(&p);
+
+    // Mostrar datos iniciales
+    printf("\n--- Datos iniciales ---\n");
+    imprimir_producto(p);
+
+    // Solicitar cantidad a sumar/restar
+    printf("\nIngrese cantidad a sumar/restar al stock: ");
+    scanf("%d", &cantidad);
+
+    // Actualizar stock
+    actualizar_stock(&p, cantidad);
+
+    // Mostrar datos actualizados
+    printf("\n--- Datos actualizados ---\n");
+    imprimir_producto(p);
+
+    return 0;
+}
