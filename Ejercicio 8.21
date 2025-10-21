@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+// Definimos una constante de preprocesador
+#define N 5
+
+// Función que muestra los elementos del arreglo en orden inverso
+void mostrar_inverso(int *vec, int n) {
+    int i;
+    printf("\nElementos en orden inverso:\n");
+    // Recorremos el arreglo desde el final hasta el principio
+    for (i = n - 1; i >= 0; i--) {
+        printf("%d ", *(vec + i));  // *(vec + i) es equivalente a vec[i]
+    }
+    printf("\n");
+}
+
+int main(void) {
+    int vec[N]; // Declaramos un arreglo de N enteros
+    int i;
+
+    // Pedimos al usuario que ingrese los valores
+    for (i = 0; i < N; i++) {
+        printf("Ingrese el elemento [%d]: ", i);
+        scanf("%d", &vec[i]);
+    }
+
+    // Llamamos a la función pasando el puntero al arreglo y su tamaño
+    mostrar_inverso(vec, N);
+
+    return 0;
+}
