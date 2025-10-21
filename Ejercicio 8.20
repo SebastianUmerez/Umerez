@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+// Definimos una constante para PI
+#define PI 3.1416
+
+// Función que calcula el área y perímetro de un círculo
+// Recibe punteros para modificar directamente las variables del main
+void calcular_area_perimetro(float *radio, float *area, float *perimetro) {
+    *area = PI * (*radio) * (*radio);       // Fórmula del área: π * r²
+    *perimetro = 2 * PI * (*radio);         // Fórmula del perímetro: 2 * π * r
+}
+
+int main(void) {
+    float radio, area, perimetro;
+
+    // Pedimos el radio al usuario
+    printf("Ingrese el radio del círculo: ");
+    scanf("%f", &radio);
+
+    // Validamos que el radio sea positivo
+    if (radio <= 0) {
+        printf("Error: el radio debe ser positivo.\n");
+        return 1; // Terminamos el programa con error
+    }
+
+    // Llamamos a la función pasando las direcciones de las variables
+    calcular_area_perimetro(&radio, &area, &perimetro);
+
+    // Mostramos los resultados
+    printf("\nResultados del círculo:\n");
+    printf("Área = %.2f\n", area);
+    printf("Perímetro = %.2f\n", perimetro);
+
+    return 0;
+}
