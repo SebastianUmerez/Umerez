@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Función para cargar los elementos del arreglo dinámico
+void cargar_dinamico(int *vec, int n) {
+    int i;
+    for (i = 0; i < n; i++) {
+        int valor;
+        do {
+            printf("Ingrese el elemento %d: ", i);
+            scanf("%d", &valor);
+            if (valor < 0) {
+                printf("Error: debe ingresar un número entero positivo.\n");
+            }
+        } while (valor < 0);
+        *(vec + i) = valor; // asigna el valor usando puntero + desplazamiento
+    }
+}
+
+int main(void) {
+    int N, i;
+    int *arreglo = NULL;
+
+    // Solicitar cantidad de elementos
+    do {
+        printf("Ingrese un número entero positivo N: ");
+        scanf("%d", &N);
+        if (N <= 0) {
+            printf("Error: N debe ser positivo.\n");
+        }
+    } while (N <= 0);
+
+    // Reservar memoria dinámica
+    arreglo = (int *) malloc(N * sizeof(int));
+    if (arreglo == NULL) {
+        printf("Error al reservar memoria.\n");
+        return 1;
+    }
+
+    // Cargar los elementos usando la función
+    cargar_dinamico(arreglo, N);
+
+    // Imprimir los elementos
+    printf("\nElementos del arreglo:\n");
+    for (i = 0; i < N; i++) {
+        printf("%d ", *(arreglo + i));
+    }
+    printf("\n");
+
+    // Liberar la memoria reservada
+    free(arreglo);
+
+    return 0;
+}
