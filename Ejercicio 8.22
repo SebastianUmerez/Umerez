@@ -1,0 +1,54 @@
+#include <stdio.h>
+#define N 5  // Cantidad de números que se ingresarán
+
+// Función que reemplaza por cero todas las ocurrencias de "valor" en el arreglo
+int eliminar_numero(int *vec, int n, int valor) {
+    int i, contador = 0;
+
+    // Recorremos el arreglo
+    for (i = 0; i < n; i++) {
+        // Si el elemento coincide con el valor a eliminar (y el valor no es 0)
+        if (*(vec + i) == valor && valor != 0) {
+            *(vec + i) = 0;  // Lo reemplazamos por cero
+            contador++;      // Contamos cuántos fueron reemplazados
+        }
+    }
+
+    return contador; // Retornamos la cantidad de reemplazos realizados
+}
+
+int main(void) {
+    int vec[N];
+    int i, valor, eliminados;
+
+    // Ingreso de los elementos del arreglo
+    printf("Ingrese %d numeros enteros:\n", N);
+    for (i = 0; i < N; i++) {
+        printf("Elemento [%d]: ", i);
+        scanf("%d", &vec[i]);
+    }
+
+    // Mostramos el arreglo original
+    printf("\nArreglo original:\n");
+    for (i = 0; i < N; i++) {
+        printf("%d ", vec[i]);
+    }
+
+    // Solicitamos el número a eliminar
+    printf("\n\nIngrese el valor a eliminar (diferente de 0): ");
+    scanf("%d", &valor);
+
+    // Llamamos a la función
+    eliminados = eliminar_numero(vec, N, valor);
+
+    // Mostramos el arreglo después del cambio
+    printf("\nArreglo modificado:\n");
+    for (i = 0; i < N; i++) {
+        printf("%d ", vec[i]);
+    }
+
+    // Informamos cuántos elementos fueron reemplazados
+    printf("\n\nSe reemplazaron %d ocurrencias del valor %d por cero.\n", eliminados, valor);
+
+    return 0;
+}
