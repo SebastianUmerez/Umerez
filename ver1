@@ -1,0 +1,63 @@
+#include <stdio.h>
+int main(){
+    unsigned int num=0xAAAA;
+    unsigned int mascara = 0x1;
+    //mascara = mascara << 1;
+    printf("%B \n",num);
+    printf("%B \n",mascara);
+    if(num & mascara) printf("1");
+    else printf("0");
+    return 0;
+}
+////////
+#include <stdio.h>
+#define N 16
+int main(){
+    unsigned int num=0xAAAA;
+    unsigned int mascara = 0x1 << N-1;
+    printf("%B \n",num);
+    printf("%B \n",mascara);
+    for(int i = 0; i < N; i++){
+    if(num & mascara) printf("1");
+    else printf("0");
+    mascara = mascara >> 1;
+    }
+    return 0;
+}
+/////
+#include <stdio.h>
+#define N 16
+int main(){
+    unsigned int num=0xAAAA;
+    unsigned int mascara = 0x1 << 32;
+    printf("%B \n",num);
+    printf("%B \n",mascara);
+    while(mascara >> 1){
+    if(num & mascara) printf("1");
+    else printf("0");
+    }
+    return 0;
+}
+/////
+#include <stdio.h>
+struct proveedor {
+    char nombre[20];
+    int cuit;
+};
+
+struct producto{
+    char nombre[30];
+    float precio;
+    struct proveedor pr;
+};
+
+int main(){
+    struct producto p1[3];
+    for(int i = 0; i < 3; i+=1) {
+       printf("producto %d \n",i + 1);
+       printf("ingresar nombre: ");
+       scanf("%s", p1[i].nombre); 
+       printf("ingresar precio: ");
+       scanf("%f",&p1[i].precio);
+    }
+}
