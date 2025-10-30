@@ -1,0 +1,137 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define TAM_NOMBRE_ESTUDIANTE 80
+#define TAM_NOMBRE_MATERIA 80
+
+typedef struct {
+    char nombre[TAM_NOMBRE_MATERIA];
+    int cantidad_parciales;
+    int *parcial;
+    float promedio;
+} materia_t;
+
+struct estudiante {
+    int legajo;
+    char nombre[TAM_NOMBRE_ESTUDIANTE];
+    int cantidad_materias;
+    materia_t *materia;
+};
+
+//-------------------- PROTOTIPOS --------------------//
+struct estudiante cargar_estudiante(void);
+void imprimir_estudiante(struct estudiante);
+materia_t* reservar_materias(int);
+void liberar_materias(materia_t*, int);
+int* reservar_parciales(int);
+void liberar_parciales(int*);
+void cargar_materia(materia_t*);
+void cargar_parciales(materia_t*);
+void calcular_promedio(materia_t*);
+
+//-------------------- MAIN --------------------//
+int main(void) {
+    struct estudiante est1;
+
+    est1 = cargar_estudiante();
+
+    // Cargar cada materia
+    for (int i = 0; i < est1.cantidad_materias; i++)
+        cargar_materia(&est1.materia[i]);
+
+    imprimir_estudiante(est1);
+
+    // Liberar memoria
+    for (int i = 0; i < est1.cantidad_materias; i++)
+        liberar_parciales(est1.materia[i].parcial);
+    liberar_materias(est1.materia, est1.cantidad_materias);
+
+    return 0;
+}
+
+//-------------------- FUNCIONES --------------------//
+
+struct estudiante cargar_estudiante(void) {
+    struct estudiante e;
+
+    printf("Ingrese legajo del estudiante: ");
+    scanf("%d", &e.legajo);
+
+    printf("Ingrese nombre del estudiante: ");
+    scanf(" %80[^\n]s", e.nombre);
+
+    printf("¿Cuántas materias va a cargar? ");
+    scanf("%d", &e.cantidad_materias);
+
+    e.materia = reservar_materias(e.cantidad_materias);
+
+    return e;
+}
+
+void imprimir_estudiante(struct estudiante e) {
+    printf("\n%10d %s\n", e.legajo, e.nombre);
+
+    for (int i = 0; i < e.cantidad_materias; i++) {
+        printf("%s:", e.materia[i].nombre);
+        for (int j = 0; j < e.materia[i].cantidad_parciales; j++) {
+            printf("%5d", e.materia[i].parcial[j]);
+        }
+        printf("  Promedio: %.2f\n", e.materia[i].promedio);
+    }
+}
+
+void cargar_materia(materia_t *p) {
+    printf("Ingrese el nombre de la materia: ");
+    scanf(" %80[^\n]s", p->nombre);
+
+    printf("¿Cuántos parciales tiene %s? ", p->nombre);
+    scanf("%d", &p->cantidad_parciales);
+
+    p->parcial = reservar_parciales(p->cantidad_parciales);
+    cargar_parciales(p);
+}
+
+void cargar_parciales(materia_t *p) {
+    for (int i = 0; i < p->cantidad_parciales; i++) {
+        int nota_valida = 0;
+        do {
+            printf("Ingrese calificación del %d° parcial: ", i + 1);
+            scanf("%d", p->parcial + i);
+            if (*(p->parcial + i) < 1 || *(p->parcial + i) > 10) printf("Error\n");
+        } while(*(p->parcial + i) < 1 || *(p->parcial + i) > 10);
+    }
+    calcular_promedio(p);
+}
+
+void calcular_promedio(materia_t *p) {
+    int suma = 0;
+    for (int i = 0; i < p->cantidad_parciales; i++) suma += p->parcial[i];
+    p->promedio = (float)suma / p->cantidad_parciales;
+}
+
+//-------------------- MEMORIA --------------------//
+materia_t* reservar_materias(int n) {
+    materia_t *p = malloc(n * sizeof(materia_t));
+    if (p == NULL) {
+        printf("Fin del programa.\n");
+        exit(1);
+    }
+    return p;
+}
+
+int* reservar_parciales(int n) {
+    int *p = malloc(n * sizeof(int));
+    if (p == NULL) {
+        printf("Fin del programa.\n");
+        exit(1);
+    }
+    return p;
+}
+
+void liberar_parciales(int *p) {
+    if (p != NULL)  free(p);
+}
+
+void liberar_materias(materia_t *p, int n) {
+    if (p != NULL) free(p);
+}
