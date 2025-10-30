@@ -18,7 +18,7 @@ struct estudiante {
     materia_t *materia;
 };
 
-//-------------------- PROTOTIPOS --------------------//
+//PROTOTIPOS
 struct estudiante cargar_estudiante(void);
 void imprimir_estudiante(struct estudiante);
 materia_t* reservar_materias(int);
@@ -29,7 +29,7 @@ void cargar_materia(materia_t*);
 void cargar_parciales(materia_t*);
 void calcular_promedio(materia_t*);
 
-//-------------------- MAIN --------------------//
+//MAIN
 int main(void) {
     struct estudiante est1;
 
@@ -44,8 +44,7 @@ int main(void) {
     return 0;
 }
 
-//-------------------- FUNCIONES --------------------//
-
+//FUNCIONES
 struct estudiante cargar_estudiante(void) {
     struct estudiante e;
 
@@ -86,11 +85,10 @@ void cargar_parciales(materia_t *p) {
     for (int i = 0; i < p->cantidad_parciales; i++) {
         int nota_valida = 0;
         do {
-            printf("Ingrese calificación del %d° parcial (1 a 10): ", i + 1);
+            printf("Ingrese calificación del %d° parcial: ", i + 1);
             scanf("%d", p->parcial + i);
-
             if (*(p->parcial + i) < 1 || *(p->parcial + i) > 10) 
-            printf("nota inválida\n");
+            printf("Error\n");
         } while(*(p->parcial + i) < 1 || *(p->parcial + i) > 10);
     }
     calcular_promedio(p);  // se llama aquí
@@ -116,18 +114,16 @@ materia_t* reservar_materias(int n) {
 int* reservar_parciales(int n) {
     int *p = malloc(n * sizeof(int));
     if (p == NULL) {
-        printf("No se pudo reservar memoria. Fin del programa.\n");
+        printf("Fin del programa.\n");
         exit(1);
     }
     return p;
 }
 
 void liberar_parciales(int *p) {
-    if (p != NULL)
-        free(p);
+    if (p != NULL) free(p);
 }
 
 void liberar_materias(materia_t *p) {
-    if (p != NULL)
-        free(p);
+    if (p != NULL) free(p);
 }
