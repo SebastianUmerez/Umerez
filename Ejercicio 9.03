@@ -1,0 +1,67 @@
+#include <stdio.h>
+#define CANT_ALUMNOS 3   // Cantidad de alumnos a cargar
+
+// Definición de la estructura alumno
+struct alumno {
+    int legajo;
+    char nombre[20];
+    char apellido[20];
+    char curso[3];
+    int notas[3];       // El enunciado menciona 3 notas
+    float promedio;
+    char estado[10];    // Cadena para guardar el estado académico
+};
+
+int main(void) {
+    struct alumno alumnos[CANT_ALUMNOS];
+    int i, j;
+    float suma;
+
+    // Carga de datos de los alumnos
+    for (i = 0; i < CANT_ALUMNOS; i++) {
+        printf("\n Alumno %d \n", i + 1);
+
+        // Ingreso y validación del legajo
+        do {
+            printf("Ingrese legajo (positivo): ");
+            scanf("%d", &alumnos[i].legajo);
+            if (alumnos[i].legajo <= 0) printf("Error \n");
+        } while (alumnos[i].legajo <= 0);
+
+        // Ingreso del nombre, apellido y curso
+        printf("Ingrese nombre: ");
+        scanf("%s", alumnos[i].nombre);
+        printf("Ingrese apellido: ");
+        scanf("%s", alumnos[i].apellido);
+        printf("Ingrese curso: ");
+        scanf("%s", alumnos[i].curso);
+
+        // Ingreso de las 3 notas
+        suma = 0;
+        for (j = 0; j < 3; j++) {
+            printf("Ingrese nota %d: ", j + 1);
+            scanf("%d", &alumnos[i].notas[j]);
+            suma += alumnos[i].notas[j];
+        }
+
+        // Cálculo del promedio
+        alumnos[i].promedio = suma / 3.0f;
+
+        // Determinación del estado académico
+        if (alumnos[i].promedio >= 8) sprintf(alumnos[i].estado, "Promocionado");
+        if (alumnos[i].promedio >= 6) sprintf(alumnos[i].estado, "Regular");
+        else sprintf(alumnos[i].estado, "Libre");
+    }
+
+    // Mostrar resultados
+    printf("\n Resultados \n");
+    for (i = 0; i < CANT_ALUMNOS; i++) {
+        printf("\nAlumno %d:\n", i + 1);
+        printf("Legajo: %d\n", alumnos[i].legajo);
+        printf("Nombre: %s %s\n", alumnos[i].nombre, alumnos[i].apellido);
+        printf("Curso: %s\n", alumnos[i].curso);
+        printf("Promedio: %.2f\n", alumnos[i].promedio);
+        printf("Estado: %s\n", alumnos[i].estado);
+    }
+    return 0;
+}
