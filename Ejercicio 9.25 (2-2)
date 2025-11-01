@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+// a) Enumeración para describir el orden de bytes (Endianness)
+typedef enum {
+    ORDEN_DESCONOCIDO,
+    LITTLE_ENDIAN,   // Byte menos significativo primero
+    BIG_ENDIAN       // Byte más significativo primero
+} Endianness;
+
+// b) Unión para inspeccionar un entero (asumimos 4 bytes)
+typedef union {
+    unsigned int valorInt;
+    unsigned char bytes[4];
+} InspectorBytes;
+
+// 1. Función que determina el tipo de Endianness del sistema
+Endianness chequearSistema(void) {
+    InspectorBytes insp;
+    insp.valorInt = 1;  // Guardamos el valor 1 en los 4 bytes
+
+    // Si el primer byte (posición 0) contiene 1, es Little Endian
+    if (insp.bytes[0] == 1)
+        return LITTLE_ENDIAN;
+    // Si el último byte (posición 3) contiene 1, es Big Endian
+    else if (insp.bytes[3] == 1)
+        return BIG_ENDIAN;
+    else
+        return ORDEN_DESCONOCIDO;
+}
+
+// 2. Función principal
+int main(void) {
+    InspectorBytes inspector;
+    Endianness endianSistema;
+
+    // 3. Determinar Endianness del sistema
+    endianSistema = chequearSistema();
+
+    // Imprimir el tipo de Endianness
+    printf("El sistema es: ");
+    switch (endianSistema) {
+        case LITTLE_ENDIAN:
+            printf("LITTLE_ENDIAN\n");
+            break;
+        case BIG_ENDIAN:
+            printf("BIG_ENDIAN\n");
+            break;
+        default:
+            printf("ORDEN_DESCONOCIDO\n");
+            break;
+    }
+
+    // 4. Solicitar número al usuario
+    printf("\nIngrese un numero entero sin signo (unsigned int): ");
+    scanf("%u", &inspector.valorInt);
+
+    // 5. Mostrar los bytes que lo representan
+    printf("\nEl valor %u se representa en memoria como:\n", inspector.valorInt);
+    for (int i = 0; i < 4; i++) {
+        printf("Byte %d: 0x%02X\n", i, inspector.bytes[i]);
+    }
+
+    return 0;
+}
