@@ -1,0 +1,51 @@
+#include <stdio.h>
+#define CANT_PROD 3   // Cantidad de productos
+
+// Definición de la estructura proveedor
+struct proveedor {
+    char nombre[30];
+    int cuit;
+};
+
+// Definición de la estructura producto, que incluye un proveedor
+struct producto {
+    char nombre[30];
+    float precio;
+    struct proveedor prov; // Estructura anidada
+};
+
+int main(void) {
+    struct producto product[CANT_PROD];
+    int i;
+
+    // Cargar los datos de los productos
+    for (i = 0; i < CANT_PROD; i++) {
+        printf("\nProducto %d \n", i + 1);
+
+        printf("Ingrese nombre del producto: ");
+        scanf("%s", product[i].nombre);  // lee el nombre sin espacios
+
+        // Validar que el precio sea positivo
+        do {
+            printf("Ingrese precio del producto: ");
+            scanf("%f", &product[i].precio);
+            if (product[i].precio <= 0) printf("Error\n");
+        } while (product[i].precio <= 0);
+
+        // Cargar datos del proveedor asociado
+        printf("Ingrese nombre del proveedor: ");
+        scanf("%s", product[i].prov.nombre);
+        printf("Ingrese CUIT del proveedor: ");
+        scanf("%d", &product[i].prov.cuit);
+    }
+
+    // Mostrar los datos ingresados
+    printf("\nLista de productos y proveedores \n");
+    for (i = 0; i < CANT_PROD; i++) {
+        printf("Producto: %s\n", product[i].nombre);
+        printf("Precio: $%.2f\n", product[i].precio);
+        printf("Proveedor: %s\n", product[i].prov.nombre);
+        printf("CUIT: %d\n\n", product[i].prov.cuit);
+    }
+    return 0;
+}
