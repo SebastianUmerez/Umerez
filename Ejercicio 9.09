@@ -1,0 +1,53 @@
+#include <stdio.h>
+#define DIAS 7   // Cantidad de días de la semana
+
+// Definición de la estructura para guardar los datos de temperatura
+struct registro_temperatura {
+    int dia;
+    int mes;
+    float temperatura_max;
+    float temperatura_min;
+};
+
+int main(void) {
+    struct registro_temperatura semana[DIAS];
+    int i, indice_max;
+    float suma_prom = 0, promedio;
+
+    // Cargar los datos de los 7 días
+    for (i = 0; i < DIAS; i++) {
+        printf("\n Día %d \n", i + 1);
+        printf("Ingrese día: ");
+        scanf("%d", &semana[i].dia);
+        printf("Ingrese mes: ");
+        scanf("%d", &semana[i].mes);
+
+        // Ingreso de temperaturas con validación básica
+        printf("Ingrese temperatura máxima: ");
+        scanf("%f", &semana[i].temperatura_max);
+        printf("Ingrese temperatura mínima: ");
+        scanf("%f", &semana[i].temperatura_min);
+
+        // Acumula la temperatura promedio del día para luego calcular el promedio semanal
+        suma_prom += (semana[i].temperatura_max + semana[i].temperatura_min) / 2.0f;
+    }
+
+    // Cálculo del promedio semanal
+    promedio = suma_prom / DIAS;
+
+    // Buscar el día con la mayor temperatura máxima
+    indice_max = 0; // Se asume el primero como el mayor al inicio
+    for (i = 1; i < DIAS; i++) {
+        if (semana[i].temperatura_max > semana[indice_max].temperatura_max) {
+            indice_max = i;
+        }
+    }
+
+    // Mostrar los resultados
+    printf("\n Resultados Semanales\n");
+    printf("Temperatura promedio semanal: %.2f°C\n", promedio);
+    printf("El día con mayor temperatura máxima fue el %d/%d con %.2f°C\n",
+           semana[indice_max].dia, semana[indice_max].mes, semana[indice_max].temperatura_max);
+
+    return 0;
+}
