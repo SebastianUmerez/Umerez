@@ -1,0 +1,108 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define N_MAX 10    // Máximo número de filas 
+#define M_MAX 10    // Máximo número de columnas 
+
+struct matrix {
+    int filas;
+    int columnas;
+    float mat[N_MAX][M_MAX];
+};
+
+typedef struct matrix matrix_t; 
+
+//Prototipos
+void cargar_matriz(matrix_t *, char *);             
+void sumar_matrices(matrix_t, matrix_t, matrix_t *); 
+matrix_t sumar_matrices_r(matrix_t, matrix_t);       
+void imprimir_matriz(matrix_t);                      
+void guardar_matriz(matrix_t, char *);               
+
+int main(void){
+    matrix_t A = {0}, B = {0};
+    matrix_t C = {0};
+
+    cargar_matriz(&A, "mat_A.txt");
+    cargar_matriz(&B, "mat_B.txt");
+
+    imprimir_matriz(A);
+    imprimir_matriz(B);
+
+    sumar_matrices(A, B, &C);
+    imprimir_matriz(C);
+    guardar_matriz(C, "mat_C.txt");
+
+    return 0;
+}
+
+void cargar_matriz(matrix_t *p, char *file) {
+    FILE *f = fopen(file, "r");    // Abrimos el archivo en modo lectura
+    if (!f) {                     
+        printf("Error %s\n", file);
+        return 1;                   
+    }
+    fclose(f); 
+}
+void imprimir_matriz(matrix_t m) {
+    for (int i = 0; i < m.filas; i++) {
+        for (int j = 0; j < m.columnas; j++)
+            printf("%9.2f", m.mat[i][j]);
+        printf("\n");
+    }
+}
+void sumar_matrices(matrix_t A, matrix_t B, matrix_t *pC) {
+    if (A.filas != B.filas || A.columnas != B.columnas) {
+        printf("Error \n");
+        return 1;
+    }
+    //Asigna filas/columnas a pC
+    pC->filas = A.filas;
+    pC->columnas = A.columnas;
+    
+    //la suma elemento a elemento
+    for (int i = 0; i < A.filas; i++) {
+        for (int j = 0; j < A.columnas; j++) {
+            pC->mat[i][j] = A.mat[i][j] + B.mat[i][j];
+        }
+    }
+}
+
+matrix_t sumar_matrices_r(matrix_t A, matrix_t B) {
+    matrix_t C = {0};
+
+    if (A.filas != B.filas || A.columnas != B.columnas) {
+        printf("Error \n");
+        return 1;
+    }
+
+    C.filas = A.filas;
+    C.columnas = A.columnas;
+
+    for (int i = 0; i < A.filas; i++) {
+        for (int j = 0; j < A.columnas; j++) {
+            C.mat[i][j] = A.mat[i][j] + B.mat[i][j];
+        }
+    }
+
+    return C;
+}
+
+void guardar_matriz(matrix_t m, char *file) {
+    FILE *f = fopen(file, "w"); // "w" crea/reescribe el archivo
+    if (!f) {
+        printf("Error %s\n", file);
+        return 1;
+    }
+
+    //Escribe la primera línea: filas columnas
+    fprintf(f, "%d %d\n", m.filas, m.columnas);
+
+    for (int i = 0; i < m.filas; i++) {
+        for (int j = 0; j < m.columnas; j++) {
+            fprintf(f, "%.2f ", m.mat[i][j]);
+        }
+        fprintf(f, "\n");
+    }
+    fclose(f);
+}
